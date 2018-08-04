@@ -13,7 +13,7 @@
         <div>
             <div class="row form-group">
                 <asp:Label Text="Title" AssociatedControlID="txtTitle" runat="server" />
-                <asp:TextBox ID="txtTitle" runat="server" OnTextChanged="txtTitle_TextChanged" /><br /><br />
+                <asp:TextBox ID="txtTitle" runat="server" /><br /><br />
                 <asp:Label Text="Content" AssociatedControlID="txtContent" runat="server" />
                 <asp:TextBox ID="txtContent" runat="server" TextMode="MultiLine"/>
                 <div class="col-xs-12 col-md-6">
@@ -41,9 +41,6 @@
                 <asp:Button Text="Send" ID="btnSend" runat="server" OnClick="btnSend_Click" />
             </div>
         </div>
-
-
-
         <asp:UpdatePanel runat="server">
             <ContentTemplate>
                 <asp:Button ID="btnPreview" Text="Preview" OnClick="btnPreview_Click" runat="server" />

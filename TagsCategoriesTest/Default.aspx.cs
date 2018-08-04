@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
@@ -37,11 +38,6 @@ namespace TagsCategoriesTest
         }
 
         protected void btnPreview_Click(object sender, EventArgs e)
-        {
-            code.Text = CommonMark.CommonMarkConverter.Convert(txtContent.Text);
-        }
-
-        protected void txtTitle_TextChanged(object sender, EventArgs e)
         {
             code.Text = CommonMark.CommonMarkConverter.Convert(txtContent.Text);
         }
