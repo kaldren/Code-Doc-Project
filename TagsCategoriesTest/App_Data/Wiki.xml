@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wiki>
+  <Categories>
+    <Category Id="66" Title="cats" />
+    <Category Id="66" Title="dogs" />
+  </Categories>
+  <Tags>
+    <Tag Id="66" Title="animals" />
+    <Tag Id="66" Title="aliens" />
+    <Tag Id="66" Title="frogs" />
+  </Tags>
+  <WikiEntries>
+    <WikiEntry Id="6fed545c-b511-4d8a-b453-5f47686ec2e1" CreatedBy="kaloyan@kukui.com" CreatedAt="2018-08-04T10:25:27.700727Z" UpdatedBy="kaloyan@kukui.com" UpdatedAt="2018-08-04T10:25:27.700727Z" CategoryIds="cats,dogs" TagIds="animals,aliens,frogs">
+      <Title>This is my title</Title>
+      <Content>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec interdum nulla. Integer ac efficitur sapien, non elementum massa. Etiam justo nunc, tincidunt quis lacus vitae, bibendum pharetra arcu. Pellentesque tortor est, luctus non consectetur et, consequat sit amet massa. Aenean dignissim porta ex, id pulvinar felis fringilla a. Donec convallis tellus vel nisi semper rutrum. Nullam lacinia massa quis sapien tincidunt pellentesque. Ut et augue ornare tellus interdum fermentum eu et metus. Nullam sagittis iaculis nisi sed semper. Praesent vitae placerat nisi, id tristique massa. Vivamus sodales laoreet neque. Morbi faucibus arcu sed rutrum blandit. Vivamus eget tempus ex, eget rutrum lectus. Vestibulum at ipsum leo. Sed id lacinia ligula.</Content>
+    </WikiEntry>
+    <WikiEntry Id="ffa7dfb2-c46f-4950-b622-0f82237d3e6b" CreatedBy="kaloyan@kukui.com" CreatedAt="2018-08-04T10:25:30.003697Z" UpdatedBy="kaloyan@kukui.com" UpdatedAt="2018-08-04T10:25:30.003697Z" CategoryIds="cats,dogs" TagIds="animals,aliens,frogs">
+      <Title>This is my title</Title>
+      <Content>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec interdum nulla. Integer ac efficitur sapien, non elementum massa. Etiam justo nunc, tincidunt quis lacus vitae, bibendum pharetra arcu. Pellentesque tortor est, luctus non consectetur et, consequat sit amet massa. Aenean dignissim porta ex, id pulvinar felis fringilla a. Donec convallis tellus vel nisi semper rutrum. Nullam lacinia massa quis sapien tincidunt pellentesque. Ut et augue ornare tellus interdum fermentum eu et metus. Nullam sagittis iaculis nisi sed semper. Praesent vitae placerat nisi, id tristique massa. Vivamus sodales laoreet neque. Morbi faucibus arcu sed rutrum blandit. Vivamus eget tempus ex, eget rutrum lectus. Vestibulum at ipsum leo. Sed id lacinia ligula.</Content>
+    </WikiEntry>
+    <WikiEntry Id="3b9f2735-4e9c-4c73-ac8d-e3b8ab807d2b" CreatedBy="kaloyan@kukui.com" CreatedAt="2018-08-04T10:25:30.9836794Z" UpdatedBy="kaloyan@kukui.com" UpdatedAt="2018-08-04T10:25:30.9836794Z" CategoryIds="cats,dogs" TagIds="animals,aliens,frogs">
+      <Title>This is my title</Title>
+      <Content>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec interdum nulla. Integer ac efficitur sapien, non elementum massa. Etiam justo nunc, tincidunt quis lacus vitae, bibendum pharetra arcu. Pellentesque tortor est, luctus non consectetur et, consequat sit amet massa. Aenean dignissim porta ex, id pulvinar felis fringilla a. Donec convallis tellus vel nisi semper rutrum. Nullam lacinia massa quis sapien tincidunt pellentesque. Ut et augue ornare tellus interdum fermentum eu et metus. Nullam sagittis iaculis nisi sed semper. Praesent vitae placerat nisi, id tristique massa. Vivamus sodales laoreet neque. Morbi faucibus arcu sed rutrum blandit. Vivamus eget tempus ex, eget rutrum lectus. Vestibulum at ipsum leo. Sed id lacinia ligula.</Content>
+    </WikiEntry>
+    <WikiEntry Id="2f28cab6-96f0-4b1e-b6a2-81526fc7bc28" CreatedBy="kaloyan@kukui.com" CreatedAt="2018-08-04T10:25:31.7756681Z" UpdatedBy="kaloyan@kukui.com" UpdatedAt="2018-08-04T10:25:31.7756681Z" CategoryIds="cats,dogs" TagIds="animals,aliens,frogs">
+      <Title>This is my title</Title>
+      <Content>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec interdum nulla. Integer ac efficitur sapien, non elementum massa. Etiam justo nunc, tincidunt quis lacus vitae, bibendum pharetra arcu. Pellentesque tortor est, luctus non consectetur et, consequat sit amet massa. Aenean dignissim porta ex, id pulvinar felis fringilla a. Donec convallis tellus vel nisi semper rutrum. Nullam lacinia massa quis sapien tincidunt pellentesque. Ut et augue ornare tellus interdum fermentum eu et metus. Nullam sagittis iaculis nisi sed semper. Praesent vitae placerat nisi, id tristique massa. Vivamus sodales laoreet neque. Morbi faucibus arcu sed rutrum blandit. Vivamus eget tempus ex, eget rutrum lectus. Vestibulum at ipsum leo. Sed id lacinia ligula.</Content>
+    </WikiEntry>
+    <WikiEntry Id="e7a1f1e7-1727-4475-8238-58fbea519907" CreatedBy="kaloyan@kukui.com" CreatedAt="2018-08-04T10:26:28.1889241Z" UpdatedBy="kaloyan@kukui.com" UpdatedAt="2018-08-04T10:26:28.1889241Z" CategoryIds="cats,dogs" TagIds="animals,aliens,frogs">
+      <Title>This is my title</Title>
+      <Content>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec interdum nulla. Integer ac efficitur sapien, non elementum massa. Etiam justo nunc, tincidunt quis lacus vitae, bibendum pharetra arcu. Pellentesque tortor est, luctus non consectetur et, consequat sit amet massa. Aenean dignissim porta ex, id pulvinar felis fringilla a. Donec convallis tellus vel nisi semper rutrum. Nullam lacinia massa quis sapien tincidunt pellentesque. Ut et augue ornare tellus interdum fermentum eu et metus. Nullam sagittis iaculis nisi sed semper. Praesent vitae placerat nisi, id tristique massa. Vivamus sodales laoreet neque. Morbi faucibus arcu sed rutrum blandit. Vivamus eget tempus ex, eget rutrum lectus. Vestibulum at ipsum leo. Sed id lacinia ligula.</Content>
+    </WikiEntry>
+    <WikiEntry Id="b35fd4c6-761c-47e2-ab38-e3a64be6aae7" CreatedBy="kaloyan@kukui.com" CreatedAt="2018-08-04T13:09:20.1084268Z" UpdatedBy="kaloyan@kukui.com" UpdatedAt="2018-08-04T13:09:20.1084268Z" CategoryIds="cats,dogs" TagIds="animals,aliens,frogs">
+      <Title>My First Doc</Title>
+      <Content>*single asterisks*
+_single underscores_
+**double asterisks**
+__double underscores__</Content>
+    </WikiEntry>
+    <WikiEntry Id="5c5b4189-e11b-45ca-9904-03b80fae473a" CreatedBy="kaloyan@kukui.com" CreatedAt="2018-08-04T13:31:29.9228906Z" UpdatedBy="kaloyan@kukui.com" UpdatedAt="2018-08-04T13:31:29.9228906Z" CategoryIds="cats,dogs" TagIds="animals,aliens,frogs">
+      <Title>This is my title</Title>
+      <Content>
+        <![CDATA[
+    private void AddWikiEntry(WikiDTO wiki)
+    {
+        XElement wikiEntry =
+                new XElement("WikiEntry",
+                    new XAttribute("Id", Guid.NewGuid()),
+                    new XAttribute("CreatedBy", "kaloyan@kukui.com"),
+                    new XAttribute("CreatedAt", DateTimeOffset.UtcNow),
+                    new XAttribute("UpdatedBy", "kaloyan@kukui.com"),
+                    new XAttribute("UpdatedAt", DateTimeOffset.UtcNow),
+                    new XAttribute("CategoryIds", FilterHashData(wiki.Categories, "Categories", "Id")),
+                    new XAttribute("TagIds", FilterHashData(wiki.Tags, "Tags", "Id")),
+                    new XElement("Title", wiki.Title),
+                    new XElement("Content", wiki.Content)
+                );
+
+        wikiRoot.Root.Element("WikiEntries").Add(wikiEntry);
+        wikiRoot.Save(XML_FILE_PATH);
+    }
+        ]]>
+</Content>
+    </WikiEntry>
+  </WikiEntries>
+</Wiki>
