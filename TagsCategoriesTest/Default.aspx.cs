@@ -15,15 +15,15 @@ namespace TagsCategoriesTest
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            XDocument doc = XDocument.Load(@"C:\Users\KDRENSKI\Desktop\TagsCategoriesTest\TagsCategoriesTest\TagsCategoriesTest\App_Data\Wiki.xml");
+            //XDocument doc = XDocument.Load(@"C:\Users\KDRENSKI\Desktop\TagsCategoriesTest\TagsCategoriesTest\TagsCategoriesTest\App_Data\Wiki.xml");
 
-            var data = doc.Root.Elements("WikiEntries")
-                .Elements()
-                .Where(p => p.Attribute("Id")
-                .Value == "5c5b4189-e11b-45ca-9904-03b80fae473a")
-                .Select(p => p.Element("Content").Value).FirstOrDefault();
+            //var data = doc.Root.Elements("WikiEntries")
+            //    .Elements()
+            //    .Where(p => p.Attribute("Id")
+            //    .Value == "5c5b4189-e11b-45ca-9904-03b80fae473a")
+            //    .Select(p => p.Element("Content").Value).FirstOrDefault();
 
-            code.Text = CommonMark.CommonMarkConverter.Convert(data);
+            //code.Text = CommonMark.CommonMarkConverter.Convert(data);
         }
 
         protected void btnSend_Click(object sender, EventArgs e)
@@ -34,6 +34,11 @@ namespace TagsCategoriesTest
             // Add new entry
             WikiAPI wikiAPI = new WikiAPI();
             wikiAPI.CreateEntry(wikiDto);
+        }
+
+        protected void btnPreview_Click(object sender, EventArgs e)
+        {
+            code.Text = CommonMark.CommonMarkConverter.Convert(txtContent.Text);
         }
     }
 }

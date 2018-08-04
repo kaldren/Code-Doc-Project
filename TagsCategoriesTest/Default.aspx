@@ -41,7 +41,15 @@
             </div>
         </div>
 
-        <asp:Literal ID="code" Text="" runat="server" />
+
+        <asp:ScriptManager runat="server" />
+
+        <asp:UpdatePanel runat="server">
+            <ContentTemplate>
+                <asp:Button ID="btnPreview" Text="Preview" OnClick="btnPreview_Click" runat="server" />
+                <asp:Literal ID="code" Text="" runat="server" />
+            </ContentTemplate>
+        </asp:UpdatePanel>
     </form>
 </body>
 </html>
