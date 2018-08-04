@@ -39,8 +39,7 @@ __double underscores__</Content>
     </WikiEntry>
     <WikiEntry Id="5c5b4189-e11b-45ca-9904-03b80fae473a" CreatedBy="kaloyan@kukui.com" CreatedAt="2018-08-04T13:31:29.9228906Z" UpdatedBy="kaloyan@kukui.com" UpdatedAt="2018-08-04T13:31:29.9228906Z" CategoryIds="cats,dogs" TagIds="animals,aliens,frogs">
       <Title>This is my title</Title>
-      <Content>
-        <![CDATA[
+      <Content><![CDATA[
     private void AddWikiEntry(WikiDTO wiki)
     {
         XElement wikiEntry =
@@ -59,8 +58,29 @@ __double underscores__</Content>
         wikiRoot.Root.Element("WikiEntries").Add(wikiEntry);
         wikiRoot.Save(XML_FILE_PATH);
     }
-        ]]>
-</Content>
+        ]]></Content>
+    </WikiEntry>
+    <WikiEntry Id="a28d2aeb-e4ae-4bb8-9240-9ce3cdb2f74e" CreatedBy="kaloyan@kukui.com" CreatedAt="2018-08-04T14:00:57.5795879Z" UpdatedBy="kaloyan@kukui.com" UpdatedAt="2018-08-04T14:00:57.5795879Z" CategoryIds="cats" TagIds="aliens">
+      <Title>This is my title</Title>
+      <Content><![CDATA[```
+    private void AddWikiEntry(WikiDTO wiki)
+    {
+        XElement wikiEntry =
+                new XElement("WikiEntry",
+                    new XAttribute("Id", Guid.NewGuid()),
+                    new XAttribute("CreatedBy", "kaloyan@kukui.com"),
+                    new XAttribute("CreatedAt", DateTimeOffset.UtcNow),
+                    new XAttribute("UpdatedBy", "kaloyan@kukui.com"),
+                    new XAttribute("UpdatedAt", DateTimeOffset.UtcNow),
+                    new XAttribute("CategoryIds", FilterHashData(wiki.Categories, "Categories", "Id")),
+                    new XAttribute("TagIds", FilterHashData(wiki.Tags, "Tags", "Id")),
+                    new XElement("Title", wiki.Title),
+                    new XElement("Content", new XCData(wiki.Content))
+                );
+        wikiRoot.Root.Element("WikiEntries").Add(wikiEntry);
+        wikiRoot.Save(XML_FILE_PATH);
+    }
+```]]></Content>
     </WikiEntry>
   </WikiEntries>
 </Wiki>

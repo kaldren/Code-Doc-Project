@@ -56,9 +56,8 @@ public class WikiAPI
                     new XAttribute("CategoryIds", FilterHashData(wiki.Categories, "Categories", "Id")),
                     new XAttribute("TagIds", FilterHashData(wiki.Tags, "Tags", "Id")),
                     new XElement("Title", wiki.Title),
-                    new XElement("Content", wiki.Content)
+                    new XElement("Content", new XCData(wiki.Content))
                 );
-
         wikiRoot.Root.Element("WikiEntries").Add(wikiEntry);
         wikiRoot.Save(XML_FILE_PATH);
     }
