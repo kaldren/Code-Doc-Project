@@ -40,5 +40,10 @@ namespace TagsCategoriesTest
         {
             code.Text = CommonMark.CommonMarkConverter.Convert(txtContent.Text);
         }
+
+        protected void txtTitle_TextChanged(object sender, EventArgs e)
+        {
+            code.Text = CommonMark.CommonMarkConverter.Convert(txtContent.Text);
+        }
     }
 }

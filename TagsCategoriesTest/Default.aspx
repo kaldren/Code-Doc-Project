@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="TagsCategoriesTest.Default" %>
+﻿<%@ Page Language="C#" validateRequest="false" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="TagsCategoriesTest.Default" %>
 
 <!DOCTYPE html>
 
@@ -9,10 +9,11 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager runat="server" />
         <div>
             <div class="row form-group">
                 <asp:Label Text="Title" AssociatedControlID="txtTitle" runat="server" />
-                <asp:TextBox ID="txtTitle" runat="server" /><br /><br />
+                <asp:TextBox ID="txtTitle" runat="server" OnTextChanged="txtTitle_TextChanged" /><br /><br />
                 <asp:Label Text="Content" AssociatedControlID="txtContent" runat="server" />
                 <asp:TextBox ID="txtContent" runat="server" TextMode="MultiLine"/>
                 <div class="col-xs-12 col-md-6">
@@ -42,7 +43,6 @@
         </div>
 
 
-        <asp:ScriptManager runat="server" />
 
         <asp:UpdatePanel runat="server">
             <ContentTemplate>
