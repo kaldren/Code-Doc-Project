@@ -82,5 +82,49 @@ __double underscores__</Content>
     }
 ```]]></Content>
     </WikiEntry>
+    <WikiEntry Id="3f6eae6d-7e30-4ac9-8521-50cdef435579" CreatedBy="kaloyan@kukui.com" CreatedAt="2018-08-04T14:04:10.5470435Z" UpdatedBy="kaloyan@kukui.com" UpdatedAt="2018-08-04T14:04:10.5470435Z" CategoryIds="cats" TagIds="aliens">
+      <Title>This is my title</Title>
+      <Content><![CDATA[```
+    private void AddWikiEntry(WikiDTO wiki)
+    {
+        XElement wikiEntry =
+                new XElement("WikiEntry",
+                    new XAttribute("Id", Guid.NewGuid()),
+                    new XAttribute("CreatedBy", "kaloyan@kukui.com"),
+                    new XAttribute("CreatedAt", DateTimeOffset.UtcNow),
+                    new XAttribute("UpdatedBy", "kaloyan@kukui.com"),
+                    new XAttribute("UpdatedAt", DateTimeOffset.UtcNow),
+                    new XAttribute("CategoryIds", FilterHashData(wiki.Categories, "Categories", "Id")),
+                    new XAttribute("TagIds", FilterHashData(wiki.Tags, "Tags", "Id")),
+                    new XElement("Title", wiki.Title),
+                    new XElement("Content", new XCData(wiki.Content))
+                );
+        wikiRoot.Root.Element("WikiEntries").Add(wikiEntry);
+        wikiRoot.Save(XML_FILE_PATH);
+    }
+```]]></Content>
+    </WikiEntry>
+    <WikiEntry Id="a3adf09b-9a78-47bc-a555-2b0e0b56e981" CreatedBy="kaloyan@kukui.com" CreatedAt="2018-08-04T14:04:29.6237922Z" UpdatedBy="kaloyan@kukui.com" UpdatedAt="2018-08-04T14:04:29.6237922Z" CategoryIds="cats" TagIds="aliens">
+      <Title>This is my title</Title>
+      <Content><![CDATA[```
+    private void AddWikiEntry(WikiDTO wiki)
+    {
+        XElement wikiEntry =
+                new XElement("WikiEntry",
+                    new XAttribute("Id", Guid.NewGuid()),
+                    new XAttribute("CreatedBy", "kaloyan@kukui.com"),
+                    new XAttribute("CreatedAt", DateTimeOffset.UtcNow),
+                    new XAttribute("UpdatedBy", "kaloyan@kukui.com"),
+                    new XAttribute("UpdatedAt", DateTimeOffset.UtcNow),
+                    new XAttribute("CategoryIds", FilterHashData(wiki.Categories, "Categories", "Id")),
+                    new XAttribute("TagIds", FilterHashData(wiki.Tags, "Tags", "Id")),
+                    new XElement("Title", wiki.Title),
+                    new XElement("Content", new XCData(wiki.Content))
+                );
+        wikiRoot.Root.Element("WikiEntries").Add(wikiEntry);
+        wikiRoot.Save(XML_FILE_PATH);
+    }
+```]]></Content>
+    </WikiEntry>
   </WikiEntries>
 </Wiki>
