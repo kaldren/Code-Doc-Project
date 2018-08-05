@@ -8,6 +8,7 @@
     <Tag Id="66" Title="animals" />
     <Tag Id="66" Title="aliens" />
     <Tag Id="66" Title="frogs" />
+    <Tag Id="66" Title="rabbits" />
   </Tags>
   <WikiEntries>
     <WikiEntry Id="6fed545c-b511-4d8a-b453-5f47686ec2e1" CreatedBy="kaloyan@kukui.com" CreatedAt="2018-08-04T10:25:27.700727Z" UpdatedBy="kaloyan@kukui.com" UpdatedAt="2018-08-04T10:25:27.700727Z" CategoryIds="cats,dogs" TagIds="animals,aliens,frogs">
@@ -125,6 +126,25 @@ __double underscores__</Content>
         wikiRoot.Save(XML_FILE_PATH);
     }
 ```]]></Content>
+    </WikiEntry>
+    <WikiEntry Id="bdc394a4-5753-495a-a3e5-94bed7f46a2f" CreatedBy="kaloyan@kukui.com" CreatedAt="2018-08-05T09:26:29.6264484Z" UpdatedBy="kaloyan@kukui.com" UpdatedAt="2018-08-05T09:26:29.6324435Z" CategoryIds="cats,dogs" TagIds="animals,aliens,frogs,rabbits">
+      <Title>This is my title</Title>
+      <Content><![CDATA[```
+<script>
+```]]></Content>
+    </WikiEntry>
+    <WikiEntry Id="6f616051-44c8-4567-95f1-85909542ee2c" CreatedBy="kaloyan@kukui.com" CreatedAt="2018-08-05T09:26:51.7473507Z" UpdatedBy="kaloyan@kukui.com" UpdatedAt="2018-08-05T09:26:51.7473507Z" CategoryIds="cats,dogs" TagIds="animals,aliens,frogs,rabbits">
+      <Title>This is my title</Title>
+      <Content><![CDATA[```
+<script>
+```]]></Content>
+    </WikiEntry>
+    <WikiEntry Id="f7feb9e3-be83-4f74-b556-b8cbca3c81c7" CreatedBy="kaloyan@kukui.com" CreatedAt="2018-08-05T09:52:18.2758151Z" UpdatedBy="kaloyan@kukui.com" UpdatedAt="2018-08-05T09:52:18.2758151Z" CategoryIds="cats,dogs" TagIds="animals,aliens,frogs">
+      <Title>Bullshit title</Title>
+      <Content><![CDATA[```
+<script>alert('test');</script>
+```
+### Hello World!]]></Content>
     </WikiEntry>
   </WikiEntries>
 </Wiki>

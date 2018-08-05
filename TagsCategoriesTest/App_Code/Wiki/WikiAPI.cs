@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
 using System.Web;
+using System.Threading;
 
 /// <summary>
 /// Summary description for WikiAPI
@@ -14,21 +15,30 @@ public class WikiAPI
 {
     private readonly string XML_FILE_PATH = HttpContext.Current.Server.MapPath("~/App_Data/Wiki.xml");
     private XDocument wikiRoot = null;
+    private static ReaderWriterLockSlim _readWriteLock = new ReaderWriterLockSlim();
 
-    public WikiAPI()
-    {
-        wikiRoot = XDocument.Load(XML_FILE_PATH);
-    }
+    public WikiAPI(){ }
 
     public void CreateEntry(WikiDTO wiki)
     {
-        // Add all new tags / categories (If they don't already exist in the XML)
-        AddWikiNodes(wiki.Categories, "Categories", "Category", "Title");
-        AddWikiNodes(wiki.Tags, "Tags", "Tag", "Title");
+        // Lock 
+        _readWriteLock.EnterWriteLock();
 
+        try
+        {
+            wikiRoot = XDocument.Load(XML_FILE_PATH);
+            // Add all new tags / categories (If they don't already exist in the XML)
+            AddWikiNodes(wiki.Categories, "Categories", "Category", "Title");
+            AddWikiNodes(wiki.Tags, "Tags", "Tag", "Title");
 
-        // Add Wiki Entry
-        AddWikiEntry(wiki);
+            // Add Wiki Entry
+            AddWikiEntry(wiki);
+        }
+        finally
+        {
+            // Release lock
+            _readWriteLock.ExitWriteLock();
+        }
     }
 
 
