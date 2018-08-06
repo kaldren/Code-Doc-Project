@@ -2,7 +2,7 @@
 <Wiki>
   <Categories>
     <Category Id="66" Title="cats" />
-    <Category Id="66" Title="dogs" />
+    <Category Id="74" Title="dogs" />
   </Categories>
   <Tags>
     <Tag Id="66" Title="animals" />
@@ -145,6 +145,27 @@ __double underscores__</Content>
 <script>alert('test');</script>
 ```
 ### Hello World!]]></Content>
+    </WikiEntry>
+    <WikiEntry Id="f96514ff-8bf5-4ccf-8a3c-e0318a7e8393" CreatedBy="kaloyan@kukui.com" CreatedAt="2018-08-06T16:13:14.8717208Z" UpdatedBy="kaloyan@kukui.com" UpdatedAt="2018-08-06T16:13:14.88172Z" CategoryIds="" TagIds="">
+      <Title>Morbi fringilla ex vel est sagittis tincidunt</Title>
+      <Content><![CDATA[<p style="color: red;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a justo sodales, imperdiet augue eu, tristique ante. Vestibulum maximus ornare ex. Nam dapibus odio felis, vel posuere massa egestas et. Ut eleifend lacus consectetur odio bibendum suscipit. Nam nec justo in purus rhoncus porta. Nunc congue quam id tempor fermentum. Etiam ipsum lacus, suscipit quis mattis nec, tincidunt at est. Vivamus aliquet libero ut faucibus posuere. Donec rhoncus magna eget neque eleifend venenatis.</p>
+
+```
+    private string FilterHashData(HashSet<string> data, string xmlParent, string xmlChildAttribute)
+    {
+        HashSet<string> filteredData = new HashSet<string>();
+
+        foreach (var tag in data)
+        {
+            if (!XmlElementExist(xmlParent, xmlChildAttribute, tag))
+            {
+                filteredData.Add(tag);
+            }
+        }
+
+        return string.Join(",", filteredData);
+    }
+```]]></Content>
     </WikiEntry>
   </WikiEntries>
 </Wiki>

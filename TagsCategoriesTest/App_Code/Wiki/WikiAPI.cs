@@ -132,36 +132,6 @@ public class WikiAPI
     }
 
     // Filter Data
-    private string FilterTags(HashSet<string> tags)
-    {
-        HashSet<string> tagsFiltered = new HashSet<string>();
-
-        foreach (var tag in tags)
-        {
-            if (!XmlElementExist("Tags", "Id", tag))
-            {
-                tagsFiltered.Add(tag);
-            }
-        }
-
-        return string.Join(",", tagsFiltered);
-    }
-
-    private string FilterCategories(HashSet<string> categories)
-    {
-        HashSet<string> categoriesFiltered = new HashSet<string>();
-
-        foreach (var cat in categories)
-        {
-            if (!XmlElementExist("Categories", "Id", cat))
-            {
-                categoriesFiltered.Add(cat);
-            }
-        }
-
-        return string.Join(",", categoriesFiltered);
-    }
-
     private string FilterHashData(HashSet<string> data, string xmlParent, string xmlChildAttribute)
     {
         HashSet<string> filteredData = new HashSet<string>();
