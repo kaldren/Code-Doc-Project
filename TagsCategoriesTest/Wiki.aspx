@@ -19,7 +19,7 @@
                         <ItemTemplate>
                             <button class="accordion" onclick="return false;"><%# Eval("Title") %></button>
                             <div class="panel">
-                                <p><%# Eval("Title") %></p>
+                                <p><%# Eval("Content") %></p>
                             </div>
                         </ItemTemplate>
                     </asp:Repeater>

@@ -13,18 +13,16 @@ namespace TagsCategoriesTest
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
             XDocument doc = XDocument.Load(HttpContext.Current.Server.MapPath("~/App_Data/Wiki.xml"));
-            rptWikiMenu.DataSource = from x in doc.Root.Elements("Categories")
-                                    .Elements("Category")
+            rptWikiMenu.DataSource = from x in doc.Root.Elements("WikiEntries")
+                                    .Elements("WikiEntry")
                                      select new
                                      {
-                                         Title = x.Attribute("Title").Value,
-                                         Id = x.Attribute("Id").Value
+                                         Title = x.Element("Title").Value,
+                                         Id = x.Attribute("Id").Value,
+                                         Content = x.Element("Content").Value
 
                                      };
-
-
             rptWikiMenu.DataBind();
         }
     }
