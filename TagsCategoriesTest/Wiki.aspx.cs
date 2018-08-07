@@ -37,11 +37,30 @@ namespace TagsCategoriesTest
                             select new
                             {
                                 Title = x.Element("Title").Value,
-                                Content = x.Element("Content").Value
+                                Content = x.Element("Content").Value,
+                                WikiId = x.Attribute("Id").Value
                             };
 
                 rptWikiContent.DataSource = data;
                 rptWikiContent.DataBind();
+            }
+
+            string showParam = Request.QueryString["show"];
+
+            if (showParam != null)
+            {
+                var data = from x in doc.Root.Elements("WikiEntries")
+                            .Elements()
+                            .Where(p => p.Attribute("Id")
+                            .Value == showParam)
+                           select new
+                           {
+                               Title = x.Element("Title").Value,
+                               Content = CommonMark.CommonMarkConverter.Convert(x.Element("Content").Value),
+                           };
+
+                rptWikiEntry.DataSource = data;
+                rptWikiEntry.DataBind();
             }
 
         }
