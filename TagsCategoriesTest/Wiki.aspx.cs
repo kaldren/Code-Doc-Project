@@ -20,10 +20,11 @@ namespace TagsCategoriesTest
                                      {
                                          Title = x.Element("Title").Value,
                                          Id = x.Attribute("Id").Value,
-                                         Content = x.Element("Content").Value
-
+                                         Content = CommonMark.CommonMarkConverter.Convert(x.Element("Content").Value)
                                      };
             rptWikiMenu.DataBind();
         }
     }
 }
+
+//https://stackoverflow.com/questions/2923137/repeater-in-repeater
