@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
@@ -24,18 +25,41 @@ namespace TagsCategoriesTest
                                      };
             rptWikiMenu.DataBind();
 
-            // Filter by tag and show it
-            //rptWikiMenu.DataSource = from x in doc.Root.Elements("WikiEntries")
-            //                        .Elements("WikiEntry")
-            //                         select new
-            //                         {
-            //                             Title = x.Element("Title").Value,
-            //                             Id = x.Attribute("Id").Value,
-            //                             Content = CommonMark.CommonMarkConverter.Convert(x.Element("Content").Value)
-            //                         };
-            //rptWikiMenu.DataBind();
+
+            string queryParam = Request.QueryString["category"];
+
+            if (queryParam != null)
+            {
+                var data = from x in doc.Root.Elements("WikiEntries")
+                            .Elements()
+                            .Where(p => p.Attribute("CategoryIds")
+                            .Value.Contains(queryParam))
+                            select new
+                            {
+                                Title = x.Element("Title").Value,
+                                Content = x.Element("Content").Value
+                            };
+
+                rptWikiContent.DataSource = data;
+                rptWikiContent.DataBind();
+            }
+
+        }
+
+        [WebMethod]
+        public static object ShowWikiDate()
+        {
+            XDocument doc = XDocument.Load(HttpContext.Current.Server.MapPath("~/App_Data/Wiki.xml"));
+
+            var data = from x in doc.Root.Elements("Categories")
+                                    .Elements("Category")
+                       select new
+                       {
+                           Title = x.Attribute("Title").Value,
+                           Id = x.Attribute("Id").Value,
+                           //Content = CommonMark.CommonMarkConverter.Convert(x.Element("Content").Value
+                       };
+            return data;
         }
     }
 }
-
-//https://stackoverflow.com/questions/2923137/repeater-in-repeater

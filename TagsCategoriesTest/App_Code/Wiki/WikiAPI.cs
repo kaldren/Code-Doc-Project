@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Xml.Linq;
 using System.Web;
 using System.Threading;
+using System.Web.Services;
 
 /// <summary>
 /// Summary description for WikiAPI
@@ -150,13 +151,7 @@ public class WikiAPI
     // Show Entries
 
     // Show entry by id
-    public void ShowEntry(string id)
-    {
-
-    }
-
-    // Show entries by category
-    public void ShowEntries(string category)
+    public void ShowEntry(string category)
     {
         var data = from x in wikiRoot.Root.Elements("WikiEntries")
                                     .Elements("WikiEntry")
@@ -167,5 +162,12 @@ public class WikiAPI
                                         Id = x.Attribute("Id").Value,
                                         //Content = CommonMark.CommonMarkConverter.Convert(x.Element("Content").Value
                                     };
+    }
+
+    // Show all entries by a given category
+    [WebMethod]
+    public static string ShowEntries()
+    {
+        return DateTime.Now.ToString();
     }
 }
