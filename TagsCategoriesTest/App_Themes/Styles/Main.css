@@ -39,3 +39,10 @@
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
+
+.table-wrapper-scroll-y {
+    display: block;
+    max-height: 1000px !important;
+    overflow-y: auto;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
