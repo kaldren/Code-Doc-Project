@@ -40,6 +40,15 @@ namespace TagsCategoriesTest {
         protected global::System.Web.UI.WebControls.Repeater rptWikiMenu;
         
         /// <summary>
+        /// phWikiEntries control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phWikiEntries;
+        
+        /// <summary>
         /// rptWikiContent control.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace TagsCategoriesTest {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptWikiContent;
+        
+        /// <summary>
+        /// phWikiEntry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phWikiEntry;
         
         /// <summary>
         /// rptWikiEntry control.

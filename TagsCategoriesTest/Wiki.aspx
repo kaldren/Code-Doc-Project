@@ -36,30 +36,32 @@
 
                 <div class="col-xs-12 col-lg-9">
                     <h2>Data</h2>
-                    <div class="table-wrapper-scroll-y">
-                        <table class="table table-bordered table-striped">
-                            <asp:Repeater ID="rptWikiContent" runat="server">
+                    <asp:PlaceHolder ID="phWikiEntries" runat="server">
+                        <div class="table-wrapper-scroll-y">
+                            <table class="table table-bordered table-striped">
+                                <asp:Repeater ID="rptWikiContent" runat="server">
+                                    <ItemTemplate>
+                                        <tr>
+                                            <td>
+                                                <p><a href="/Wiki.aspx?show=<%# Eval("WikiId") %>" target="_blank"><%# Eval("Title") %></a></p>
+                                            </td>
+                                        </tr>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </table>
+                        </div>
+                    </asp:PlaceHolder>
+
+                    <asp:PlaceHolder ID="phWikiEntry" runat="server">
+                        <div class="col-xs-12">
+                            <asp:Repeater ID="rptWikiEntry" runat="server">
                                 <ItemTemplate>
-                                    <tr>
-                                        <td>
-                                            <p><a href="/Wiki.aspx?show=<%# Eval("WikiId") %>" target="_blank"><%# Eval("Title") %></a></p>
-                                        </td>
-                                    </tr>
+                                    <h3><%# Eval("Title") %></h3>
+                                    <p><%# Eval("Content") %></p>
                                 </ItemTemplate>
                             </asp:Repeater>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-xs-12 col-lg-9 col-lg-offset-3">
-                    <asp:Repeater ID="rptWikiEntry" runat="server">
-                        <ItemTemplate>
-                            <h3><%# Eval("Title") %></h3>
-                            <p><%# Eval("Content") %></p>
-                        </ItemTemplate>
-                    </asp:Repeater>
+                        </div>
+                    </asp:PlaceHolder>
                 </div>
             </div>
         </div>

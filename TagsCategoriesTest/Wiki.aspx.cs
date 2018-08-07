@@ -61,6 +61,7 @@ namespace TagsCategoriesTest
 
                 rptWikiEntry.DataSource = data;
                 rptWikiEntry.DataBind();
+                phWikiEntries.Visible = false;
             }
 
         }
