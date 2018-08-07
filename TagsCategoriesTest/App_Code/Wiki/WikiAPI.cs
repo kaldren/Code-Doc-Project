@@ -146,4 +146,26 @@ public class WikiAPI
 
         return string.Join(",", filteredData);
     }
+
+    // Show Entries
+
+    // Show entry by id
+    public void ShowEntry(string id)
+    {
+
+    }
+
+    // Show entries by category
+    public void ShowEntries(string category)
+    {
+        var data = from x in wikiRoot.Root.Elements("WikiEntries")
+                                    .Elements("WikiEntry")
+                                    where x.Attribute("CategoryIds").Value == category
+                                    select new
+                                    {
+                                        Title = x.Attribute("Title").Value,
+                                        Id = x.Attribute("Id").Value,
+                                        //Content = CommonMark.CommonMarkConverter.Convert(x.Element("Content").Value
+                                    };
+    }
 }

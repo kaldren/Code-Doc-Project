@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Wiki>
   <Categories>
-    <Category Id="66" Title="cats" />
-    <Category Id="74" Title="dogs" />
+    <Category Id="1" Title="cats" />
+    <Category Id="2" Title="dogs" />
   </Categories>
   <Tags>
-    <Tag Id="66" Title="animals" />
-    <Tag Id="66" Title="aliens" />
-    <Tag Id="66" Title="frogs" />
-    <Tag Id="66" Title="rabbits" />
+    <Tag Id="10" Title="animals" />
+    <Tag Id="20" Title="aliens" />
+    <Tag Id="30" Title="frogs" />
+    <Tag Id="40" Title="rabbits" />
   </Tags>
   <WikiEntries>
     <WikiEntry Id="6fed545c-b511-4d8a-b453-5f47686ec2e1" CreatedBy="kaloyan@kukui.com" CreatedAt="2018-08-04T10:25:27.700727Z" UpdatedBy="kaloyan@kukui.com" UpdatedAt="2018-08-04T10:25:27.700727Z" CategoryIds="cats,dogs" TagIds="animals,aliens,frogs">

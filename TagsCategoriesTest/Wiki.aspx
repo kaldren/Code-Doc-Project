@@ -13,14 +13,13 @@
             <div class="row">
                 <div class="col-xs-12 col-lg-4">
                 </div>
-
                 <div class="col-xs-12 col-lg-8">
                     <asp:Repeater ID="rptWikiMenu" runat="server">
                         <ItemTemplate>
-                            <button class="accordion" onclick="return false;"><%# Eval("Title") %></button>
-                            <div class="panel">
-                                <p><%# Eval("Content") %></p>
-                            </div>
+                            <asp:Button Text='<%# Eval("Title") %>' runat="server" /><br /><br />
+<%--                            <div class="panel">
+                                <p><%# Eval("Title") %></p>
+                            </div>--%>
                         </ItemTemplate>
                     </asp:Repeater>
                 </div>

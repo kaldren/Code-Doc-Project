@@ -14,15 +14,26 @@ namespace TagsCategoriesTest
         protected void Page_Load(object sender, EventArgs e)
         {
             XDocument doc = XDocument.Load(HttpContext.Current.Server.MapPath("~/App_Data/Wiki.xml"));
-            rptWikiMenu.DataSource = from x in doc.Root.Elements("WikiEntries")
-                                    .Elements("WikiEntry")
+            rptWikiMenu.DataSource = from x in doc.Root.Elements("Categories")
+                                    .Elements("Category")
                                      select new
                                      {
-                                         Title = x.Element("Title").Value,
+                                         Title = x.Attribute("Title").Value,
                                          Id = x.Attribute("Id").Value,
-                                         Content = CommonMark.CommonMarkConverter.Convert(x.Element("Content").Value)
+                                         //Content = CommonMark.CommonMarkConverter.Convert(x.Element("Content").Value
                                      };
             rptWikiMenu.DataBind();
+
+            // Filter by tag and show it
+            //rptWikiMenu.DataSource = from x in doc.Root.Elements("WikiEntries")
+            //                        .Elements("WikiEntry")
+            //                         select new
+            //                         {
+            //                             Title = x.Element("Title").Value,
+            //                             Id = x.Attribute("Id").Value,
+            //                             Content = CommonMark.CommonMarkConverter.Convert(x.Element("Content").Value)
+            //                         };
+            //rptWikiMenu.DataBind();
         }
     }
 }
