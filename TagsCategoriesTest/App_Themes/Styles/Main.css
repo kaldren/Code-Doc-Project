@@ -46,3 +46,19 @@
     overflow-y: auto;
     -ms-overflow-style: -ms-autohiding-scrollbar;
 }
+
+.table-wrapper-scroll-y p {margin: 6px 0;}
+
+.query-results {
+    display: block !important;
+    margin: 20px 0;
+}
+
+#pagination a:not(.aspNetDisabled) {
+    color: #2c9024;
+    border-bottom: 2px solid;
+}
+
+.aspNetDisabled {
+    color: #ff0000;
+}

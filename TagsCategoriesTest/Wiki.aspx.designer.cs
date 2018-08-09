@@ -40,6 +40,24 @@ namespace TagsCategoriesTest {
         protected global::System.Web.UI.WebControls.Repeater rptWikiMenu;
         
         /// <summary>
+        /// phQueryResults control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phQueryResults;
+        
+        /// <summary>
+        /// lblResults control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblResults;
+        
+        /// <summary>
         /// phWikiEntries control.
         /// </summary>
         /// <remarks>
@@ -49,13 +67,13 @@ namespace TagsCategoriesTest {
         protected global::System.Web.UI.WebControls.PlaceHolder phWikiEntries;
         
         /// <summary>
-        /// rptWikiContent control.
+        /// lvWikies control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptWikiContent;
+        protected global::System.Web.UI.WebControls.ListView lvWikies;
         
         /// <summary>
         /// phWikiEntry control.

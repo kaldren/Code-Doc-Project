@@ -36,20 +36,39 @@
 
                 <div class="col-xs-12 col-lg-9">
                     <h2>Data</h2>
+                    <asp:PlaceHolder ID="phQueryResults" Visible="false" runat="server">
+                        <asp:Label Text="" CssClass="query-results" ID="lblResults" runat="server" />
+                    </asp:PlaceHolder>
                     <asp:PlaceHolder ID="phWikiEntries" runat="server">
-                        <div class="table-wrapper-scroll-y">
-                            <table class="table table-bordered table-striped">
-                                <asp:Repeater ID="rptWikiContent" runat="server">
-                                    <ItemTemplate>
-                                        <tr>
-                                            <td>
-                                                <p><a href="/Wiki.aspx?show=<%# Eval("WikiId") %>" target="_blank"><%# Eval("Title") %></a></p>
-                                            </td>
-                                        </tr>
-                                    </ItemTemplate>
-                                </asp:Repeater>
-                            </table>
-                        </div>
+                        <asp:ListView ID="lvWikies" ItemPlaceholderID="itemPlaceholder" runat="server">
+                           <LayoutTemplate> 
+                                <div class="table-wrapper-scroll-y">
+                                    <table class="table table-bordered table-striped">
+                                        <div id="itemPlaceholder" runat="server">
+                                        </div>
+                                    </table>
+                                </div>
+                                <div id="pagination" class="text-center">
+                                     <asp:DataPager ID="ListingDataPager" runat="server" PageSize="10" PagedControlID="lvWikies" QueryStringField="page">
+                                        <Fields>
+                                            <asp:NextPreviousPagerField 
+                                            FirstPageText="First"
+                                            LastPageText="Last"
+                                            NextPageText="Next"
+                                            PreviousPageText="Back" />
+                                        </Fields>
+                                    </asp:DataPager>
+                                </div>
+                            </LayoutTemplate>
+                            <ItemTemplate>
+                                <tr>
+                                    <td>
+                                        <p><a href="/Wiki.aspx?show=<%# Eval("WikiId") %>" target="_blank"><%# Eval("Title") %></a></p>
+                                    </td>
+                                </tr>
+                            </ItemTemplate>
+
+                        </asp:ListView>
                     </asp:PlaceHolder>
 
                     <asp:PlaceHolder ID="phWikiEntry" runat="server">

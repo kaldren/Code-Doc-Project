@@ -12,6 +12,11 @@ namespace TagsCategoriesTest
 {
     public partial class Wiki : System.Web.UI.Page
     {
+        protected void Page_Render(object sender, EventArgs e)
+        {
+            lvWikies.DataBind();
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             XDocument doc = XDocument.Load(HttpContext.Current.Server.MapPath("~/App_Data/Wiki.xml"));
@@ -34,15 +39,17 @@ namespace TagsCategoriesTest
                             .Elements()
                             .Where(p => p.Attribute("CategoryIds")
                             .Value.Contains(queryParam))
-                            select new
-                            {
-                                Title = x.Element("Title").Value,
-                                Content = x.Element("Content").Value,
-                                WikiId = x.Attribute("Id").Value
+                           select new
+                           {
+                               Title = x.Element("Title").Value,
+                               Content = x.Element("Content").Value,
+                               WikiId = x.Attribute("Id").Value,
                             };
 
-                rptWikiContent.DataSource = data;
-                rptWikiContent.DataBind();
+                lvWikies.DataSource = data.ToList();
+                lvWikies.DataBind();
+                phQueryResults.Visible = true;
+                lblResults.Text = "Results found: " + data.Count();
             }
 
             string showParam = Request.QueryString["show"];
