@@ -43,6 +43,25 @@ namespace TagsCategoriesTest.App_Code.Wiki
         #endregion Properties
 
         #region Methods
+
+        private void AddWikiNodes(HashSet<string> data, string xmlParent, string xmlChild, string xmlChildAttribute)
+        {
+            foreach (var item in data)
+            {
+                if (!XmlUtils.XmlElementExist(WikiXML, xmlParent, xmlChildAttribute, item))
+                {
+                    // Add it
+                    WikiXML.Root
+                            .Element(xmlParent)
+                            .Add(
+                                new XElement(xmlChild, new XAttribute("Id", XmlUtils.GenerateNodeId(WikiXML, xmlParent)),
+                                new XAttribute(xmlChildAttribute, item))
+                            );
+                }
+            }
+        }
+
+        // Creates wiki
         public void CreateEntry(WikiDTO wiki)
         {
             if (wiki == null)
@@ -64,24 +83,6 @@ namespace TagsCategoriesTest.App_Code.Wiki
             }
         }
 
-        private void AddWikiNodes(HashSet<string> data, string xmlParent, string xmlChild, string xmlChildAttribute)
-        {
-            foreach (var item in data)
-            {
-                if (!XmlUtils.XmlElementExist(WikiXML, xmlParent, xmlChildAttribute, item))
-                {
-                    // Add it
-                    WikiXML.Root
-                            .Element(xmlParent)
-                            .Add(
-                                new XElement(xmlChild, new XAttribute("Id", XmlUtils.GenerateNodeId(WikiXML, xmlParent)),
-                                new XAttribute(xmlChildAttribute, item))
-                            );
-                }
-            }
-        }
-
-        // Creates WikiEntry
         private void AddWikiEntry(WikiDTO wiki)
         {
             // Add all new tags / categories (If they don't already exist in the XML)
@@ -105,22 +106,23 @@ namespace TagsCategoriesTest.App_Code.Wiki
             WikiXML.Save(XmlFilePath);
         }
 
-        // Show entry by id
-        public void ShowEntry(string category)
+        // Show wiki by id
+        public static XElement GetWikiById(string id)
         {
-            var data = from x in WikiXML.Root
-                        .Elements("WikiEntries")
-                        .Elements("WikiEntry")
-                        where x.Attribute("CategoryIds").Value == category
-                        select new
-                        {
-                            Title = x.Attribute("Title").Value,
-                            Id = x.Attribute("Id").Value,
-                        };
+            if (!string.IsNullOrEmpty(id))
+            {
+                return WikiAPI.WikiXML.Root.Elements("WikiEntries")
+                    .Elements()
+                    .Where(p => p.Attribute("Id")
+                    .Value == id)
+                    .FirstOrDefault();
+            }
+
+            return null;
         }
 
-        // Edit Wiki Entry
-        public static void EditEntry(string wikiId, string wikiTitle, string wikiContent)
+        // Edit wiki
+        public static void EditWiki(string wikiId, string wikiTitle, string wikiContent)
         {
             var data = WikiXML.Root
                                 .Elements("WikiEntries")
@@ -135,9 +137,9 @@ namespace TagsCategoriesTest.App_Code.Wiki
             XmlUtils.SaveXML(WikiXML, XmlFilePath);
         }
 
-        // Delete Wiki Entry
+        // Delete wiki
         [WebMethod]
-        public static void DeleteEntry(string id)
+        public static void DeleteWiki(string id)
         {
             WikiXML.Root
                     .Elements("WikiEntries")
