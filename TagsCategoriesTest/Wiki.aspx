@@ -77,6 +77,7 @@
                                 <ItemTemplate>
                                     <h3><%# Eval("Title") %></h3>
                                     <p><%# Eval("Content") %></p>
+                                    <a href="/Edit.aspx?id=<%# Eval("WikiId") %>" target="_blank">Edit</a>
                                 </ItemTemplate>
                             </asp:Repeater>
                         </div>

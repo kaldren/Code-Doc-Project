@@ -62,6 +62,7 @@ namespace TagsCategoriesTest
                             .Value == showParam)
                            select new
                            {
+                               WikiId = x.Attribute("Id").Value,
                                Title = x.Element("Title").Value,
                                Content = CommonMark.CommonMarkConverter.Convert(x.Element("Content").Value),
                            };
@@ -84,7 +85,6 @@ namespace TagsCategoriesTest
                        {
                            Title = x.Attribute("Title").Value,
                            Id = x.Attribute("Id").Value,
-                           //Content = CommonMark.CommonMarkConverter.Convert(x.Element("Content").Value
                        };
             return data;
         }

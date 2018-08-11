@@ -21,10 +21,9 @@ public class WikiDTO
     public HashSet<string> Categories { get; private set; }
     public HashSet<string> Tags { get; private set; }
 
-    public WikiDTO(string id, string title, string content, string createdby, 
+    public WikiDTO(string title, string content, string createdby, 
         DateTimeOffset createdat, DateTimeOffset updatedat, string updatedby, HashSet<string> categories, HashSet<string> tags)
     {
-        Id = id;
         Title = title;
         Content = content;
         CreatedBy = createdby;
@@ -33,18 +32,6 @@ public class WikiDTO
         UpdatedBy = updatedby;
         Categories = categories;
         Tags = tags;
-    }
-
-    public class Category
-    {
-        public int Id { get; set; }
-        public string Title { get; set; }
-    }
-
-    public class Tag
-    {
-        public int Id { get; set; }
-        public string Title { get; set; }
     }
 
     public static HashSet<string> GetUniqueData(ListBox listBoxData, TextBox textBoxData)

@@ -19,8 +19,6 @@
                 <div class="col-xs-12 col-md-6">
                     <p>Tags:</p>
                     <asp:ListBox ID="lbTags" runat="server" SelectionMode="Multiple">
-                        <asp:ListItem Value="Cats" Text="Cats" />
-                        <asp:ListItem Value="Dogs" Text="Dogs" />
                     </asp:ListBox>
                     <div>
                         <asp:TextBox ID="txtTags" runat="server" />
@@ -29,8 +27,6 @@
                 <div class="col-xs-12 col-md-6">
                     <p>Categories:</p>
                     <asp:ListBox ID="lbCategories" runat="server" SelectionMode="Multiple">
-                        <asp:ListItem Value="Animals" Text="Animals" />
-                        <asp:ListItem Value="Aliens" Text="Aliens" />
                     </asp:ListBox>
                     <div>
                         <asp:TextBox ID="txtCategories" runat="server" />

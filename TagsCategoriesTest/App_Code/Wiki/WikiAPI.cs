@@ -14,20 +14,23 @@ using System.Web.Services;
 /// </summary>
 public class WikiAPI
 {
-    private readonly string XML_FILE_PATH = HttpContext.Current.Server.MapPath("~/App_Data/Wiki.xml");
-    private XDocument wikiRoot = null;
+    public readonly static string XML_FILE_PATH = HttpContext.Current.Server.MapPath(@"~/App_Data/Wiki.xml");
+    private static readonly XDocument wikiRoot = XDocument.Load(XML_FILE_PATH);
     private static ReaderWriterLockSlim _readWriteLock = new ReaderWriterLockSlim();
 
     public WikiAPI(){ }
 
     public void CreateEntry(WikiDTO wiki)
     {
+        if (wiki == null)
+        {
+            throw new ArgumentNullException(nameof(wiki));
+        }
         // Lock 
         _readWriteLock.EnterWriteLock();
 
         try
         {
-            wikiRoot = XDocument.Load(XML_FILE_PATH);
             // Add all new tags / categories (If they don't already exist in the XML)
             AddWikiNodes(wiki.Categories, "Categories", "Category", "Title");
             AddWikiNodes(wiki.Tags, "Tags", "Tag", "Title");
@@ -42,7 +45,6 @@ public class WikiAPI
         }
     }
 
-
     private void AddWikiNodes(HashSet<string> data, string xmlParent, string xmlChild, string xmlChildAttribute)
     {
         foreach (var item in data)
@@ -50,20 +52,21 @@ public class WikiAPI
             if (!XmlElementExist(xmlParent, xmlChildAttribute, item))
             {
                 // Add it
-                wikiRoot.Root.Element(xmlParent).Add(new XElement(xmlChild, new XAttribute("Id", "66"), new XAttribute(xmlChildAttribute, item)));
+                wikiRoot.Root.Element(xmlParent).Add(new XElement(xmlChild, new XAttribute("Id", GenerateId(xmlParent)), new XAttribute(xmlChildAttribute, item)));
             }
         }
     }
 
+    // Creates WikiEntry
     private void AddWikiEntry(WikiDTO wiki)
     {
         XElement wikiEntry =
                 new XElement("WikiEntry",
                     new XAttribute("Id", Guid.NewGuid()),
                     new XAttribute("CreatedBy", "kaloyan@kukui.com"),
-                    new XAttribute("CreatedAt", DateTimeOffset.UtcNow),
+                    new XAttribute("CreatedAt", DateTimeOffset.UtcNow.ToString()),
                     new XAttribute("UpdatedBy", "kaloyan@kukui.com"),
-                    new XAttribute("UpdatedAt", DateTimeOffset.UtcNow),
+                    new XAttribute("UpdatedAt", DateTimeOffset.UtcNow.ToString()),
                     new XAttribute("CategoryIds", FilterHashData(wiki.Categories, "Categories", "Id")),
                     new XAttribute("TagIds", FilterHashData(wiki.Tags, "Tags", "Id")),
                     new XElement("Title", wiki.Title),
@@ -71,6 +74,28 @@ public class WikiAPI
                 );
         wikiRoot.Root.Element("WikiEntries").Add(wikiEntry);
         wikiRoot.Save(XML_FILE_PATH);
+    }
+
+    // Increments the Id of the last child node by increment
+    private string GenerateId(string parentNode, int increment = 1)
+    {
+        var data =
+            wikiRoot.Root.Elements(parentNode)
+            .Elements()
+            .Last()
+            .Attribute("Id").Value;
+
+        int newId = -999;
+        var newdata = Int32.TryParse(data, out newId);
+
+        if (!newdata)
+        {
+            throw new ArgumentException(data + " is not a numeric string");
+        }
+
+        newId += increment;
+
+        return newId.ToString();
     }
 
     // Filters data and returns unique entries
@@ -127,11 +152,6 @@ public class WikiAPI
         return (data == null) ? false : true;
     }
 
-    private List<XElement> GetChildNodes(string rootNode, string parentNode, string childNode)
-    {
-        return wikiRoot.Element("Wiki").Element(parentNode).Elements(childNode).ToList();
-    }
-
     // Filter Data
     private string FilterHashData(HashSet<string> data, string xmlParent, string xmlChildAttribute)
     {
@@ -148,8 +168,6 @@ public class WikiAPI
         return string.Join(",", filteredData);
     }
 
-    // Show Entries
-
     // Show entry by id
     public void ShowEntry(string category)
     {
@@ -164,10 +182,64 @@ public class WikiAPI
                                     };
     }
 
-    // Show all entries by a given category
-    [WebMethod]
-    public static string ShowEntries()
+    // Preview code
+    public static string PreviewCode(string code)
     {
-        return DateTime.Now.ToString();
+        return CommonMark.CommonMarkConverter.Convert(code);
+    }
+
+    // Bind Categories 
+    public static void BindCategories(ListBox categoryId)
+    {
+        categoryId.DataSource = wikiRoot
+                                    .Root
+                                    .Elements("Categories")
+                                    .Elements()
+                                    .Select(c => c.Attribute("Title").Value)
+                                    .ToList();
+
+        categoryId.DataBind();
+    }
+
+    // Bind Tags 
+    public static void BindTags(ListBox tagsId)
+    {
+        tagsId.DataSource = wikiRoot
+                                .Root
+                                .Elements("Tags")
+                                .Elements()
+                                .Select(c => c.Attribute("Title").Value)
+                                .ToList();
+
+        tagsId.DataBind();
+    }
+
+    // Load the XML document
+    public static XDocument GetXML()
+    {
+        return XDocument.Load(XML_FILE_PATH);
+    }
+
+    // Edit Wiki Entry
+    public static void EditEntry(string wikiId, string wikiTitle, string wikiContent)
+    {
+        var data = GetXML()
+                        .Root
+                        .Elements("WikiEntries")
+                        .Elements()
+                        .Where(p => p.Attribute("Id")
+                        .Value == wikiId)
+                        .FirstOrDefault();
+
+        data.Element("Title").Value = wikiTitle;
+        data.Element("Content").Value = wikiContent;
+        data.Attribute("UpdatedAt").Value = DateTimeOffset.UtcNow.ToString();
+        SaveXML();
+    }
+
+    // Save XML Data
+    public static void SaveXML()
+    {
+        wikiRoot.Save(XML_FILE_PATH);
     }
 }
