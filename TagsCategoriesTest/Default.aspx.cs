@@ -6,6 +6,7 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
+using TagsCategoriesTest.App_Code.Utils;
 using TagsCategoriesTest.App_Code.Wiki;
 
 namespace TagsCategoriesTest
@@ -17,22 +18,23 @@ namespace TagsCategoriesTest
             // Bind Categories and Tags Data
             if (!IsPostBack)
             {
-                WikiAPI.BindCategories(lbCategories);
-                WikiAPI.BindTags(lbTags);
+                DataUtils.BindCategories(WikiAPI.WikiXML, lbCategories);
+                DataUtils.BindTags(WikiAPI.WikiXML, lbTags);
             }
         }
 
         protected void btnSend_Click(object sender, EventArgs e)
         {
             // Get data
-            WikiDTO wikiDto = 
-                new WikiDTO(txtTitle.Text,
-                txtContent.Text,"JohnDoe",
-                DateTimeOffset.UtcNow,
-                DateTimeOffset.UtcNow,
-                "JohnDoe", 
-                WikiDTO.GetUniqueData(lbTags, txtTags), 
-                WikiDTO.GetUniqueData(lbCategories, txtCategories));
+            WikiDTO wikiDto = new WikiDTO(
+                    txtTitle.Text,
+                    txtContent.Text, "JohnDoe",
+                    DateTimeOffset.UtcNow,
+                    DateTimeOffset.UtcNow,
+                    "JohnDoe",
+                    DataUtils.GetUniqueData(lbTags, txtTags),
+                    DataUtils.GetUniqueData(lbCategories, txtCategories)
+                );
 
             // Add new entry
             WikiAPI wikiAPI = new WikiAPI();
@@ -41,7 +43,7 @@ namespace TagsCategoriesTest
 
         protected void btnPreview_Click(object sender, EventArgs e)
         {
-            code.Text = WikiAPI.PreviewCode(txtContent.Text);
+            code.Text = DataUtils.PreviewCode(txtContent.Text);
         }
     }
 }

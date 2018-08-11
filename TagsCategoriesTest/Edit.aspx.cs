@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
+using TagsCategoriesTest.App_Code.Utils;
 using TagsCategoriesTest.App_Code.Wiki;
 
 namespace TagsCategoriesTest
@@ -19,7 +20,7 @@ namespace TagsCategoriesTest
 
                 if (queryParam != null)
                 {
-                    var doc = WikiAPI.GetXML();
+                    var doc = WikiAPI.WikiXML;
 
                     var data = doc.Root.Elements("WikiEntries")
                         .Elements()
@@ -30,6 +31,8 @@ namespace TagsCategoriesTest
                     txtTitle.Text = data.Element("Title").Value;
                     txtContent.Text = data.Element("Content").Value;
                     wikiId.Value = queryParam;
+
+                    // WikiAPI.GetWikiById()
                 }
             }
 
@@ -42,7 +45,7 @@ namespace TagsCategoriesTest
 
         protected void btnPreview_Click(object sender, EventArgs e)
         {
-            code.Text = WikiAPI.PreviewCode(txtContent.Text);
+            code.Text = DataUtils.PreviewCode(txtContent.Text);
         }
     }
 }

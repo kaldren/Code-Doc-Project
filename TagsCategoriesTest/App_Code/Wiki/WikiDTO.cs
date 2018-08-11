@@ -35,33 +35,5 @@ namespace TagsCategoriesTest.App_Code.Wiki
             Tags = tags;
         }
 
-        public static HashSet<string> GetUniqueData(ListBox listBoxData, TextBox textBoxData)
-        {
-            ListBox listData = listBoxData;
-            string[] textData = string.IsNullOrEmpty(textBoxData.Text) ? null : textBoxData.Text.Split(',');
-
-            HashSet<string> uniqueDataList = new HashSet<string>();
-
-            if (listData.GetSelectedIndices().Count() > 0)
-            {
-                foreach (ListItem item in listData.Items)
-                {
-                    if (item.Selected)
-                    {
-                        uniqueDataList.Add(item.Value.ToLower().Trim());
-                    }
-                }
-            }
-
-            if (textData != null)
-            {
-                foreach (var item in textData)
-                {
-                    uniqueDataList.Add(item.ToLower().Trim());
-                }
-            }
-
-            return uniqueDataList;
-        }
     }
 }

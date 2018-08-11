@@ -31,5 +31,51 @@ namespace TagsCategoriesTest.App_Code.Utils
 
             return (data == null) ? false : true;
         }
+
+        // Gets the last node's Id (could increment it by increment)
+        public static string GenerateNodeId(XDocument doc, string parentNode, int increment = 1)
+        {
+            var data =
+                doc.Root.Elements(parentNode)
+                .Elements()
+                .Last()
+                .Attribute("Id").Value;
+
+            int newId = -999;
+            var newdata = Int32.TryParse(data, out newId);
+
+            if (!newdata)
+            {
+                throw new ArgumentException(data + " is not a numeric string");
+            }
+
+            newId += increment;
+
+            return newId.ToString();
+        }
+
+        // Filter Data
+        public static string FilterHashData(XDocument doc, HashSet<string> data, string xmlParent, string xmlChildAttribute)
+        {
+            HashSet<string> filteredData = new HashSet<string>();
+
+            foreach (var tag in data)
+            {
+                if (!XmlUtils.XmlElementExist(doc, xmlParent, xmlChildAttribute, tag))
+                {
+                    filteredData.Add(tag);
+                }
+            }
+
+            return string.Join(",", filteredData);
+        }
+
+        // Get First Node
+
+        // Save XML Data
+        public static void SaveXML(XDocument doc, string filepath)
+        {
+            doc.Save(filepath);
+        }
     }
 }

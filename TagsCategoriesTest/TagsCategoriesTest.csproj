@@ -71,6 +71,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Code\Utils\DataUtils.cs" />
     <Compile Include="App_Code\Utils\XmlUtils.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
