@@ -8,58 +8,60 @@ using System.Web.UI.WebControls;
 /// Summary description for WikiDTO
 /// </summary>
 /// 
-
-public class WikiDTO
+namespace TagsCategoriesTest.App_Code.Wiki
 {
-    public string Id { get; private set; }
-    public string Title { get; private set; }
-    public string Content { get; private set; }
-    public string CreatedBy { get; private set; }
-    public DateTimeOffset CreatedAt { get; private set; }
-    public DateTimeOffset UpdatedAt { get; private set; }
-    public string UpdatedBy { get; private set; }
-    public HashSet<string> Categories { get; private set; }
-    public HashSet<string> Tags { get; private set; }
-
-    public WikiDTO(string title, string content, string createdby, 
-        DateTimeOffset createdat, DateTimeOffset updatedat, string updatedby, HashSet<string> categories, HashSet<string> tags)
+    public class WikiDTO
     {
-        Title = title;
-        Content = content;
-        CreatedBy = createdby;
-        CreatedAt = createdat;
-        UpdatedAt = updatedat;
-        UpdatedBy = updatedby;
-        Categories = categories;
-        Tags = tags;
-    }
+        public string Id { get; private set; }
+        public string Title { get; private set; }
+        public string Content { get; private set; }
+        public string CreatedBy { get; private set; }
+        public DateTimeOffset CreatedAt { get; private set; }
+        public DateTimeOffset UpdatedAt { get; private set; }
+        public string UpdatedBy { get; private set; }
+        public HashSet<string> Categories { get; private set; }
+        public HashSet<string> Tags { get; private set; }
 
-    public static HashSet<string> GetUniqueData(ListBox listBoxData, TextBox textBoxData)
-    {
-        ListBox listData = listBoxData;
-        string[] textData = string.IsNullOrEmpty(textBoxData.Text) ? null : textBoxData.Text.Split(',');
-
-        HashSet<string> uniqueDataList = new HashSet<string>();
-
-        if (listData.GetSelectedIndices().Count() > 0)
+        public WikiDTO(string title, string content, string createdby,
+            DateTimeOffset createdat, DateTimeOffset updatedat, string updatedby, HashSet<string> categories, HashSet<string> tags)
         {
-            foreach (ListItem item in listData.Items)
+            Title = title;
+            Content = content;
+            CreatedBy = createdby;
+            CreatedAt = createdat;
+            UpdatedAt = updatedat;
+            UpdatedBy = updatedby;
+            Categories = categories;
+            Tags = tags;
+        }
+
+        public static HashSet<string> GetUniqueData(ListBox listBoxData, TextBox textBoxData)
+        {
+            ListBox listData = listBoxData;
+            string[] textData = string.IsNullOrEmpty(textBoxData.Text) ? null : textBoxData.Text.Split(',');
+
+            HashSet<string> uniqueDataList = new HashSet<string>();
+
+            if (listData.GetSelectedIndices().Count() > 0)
             {
-                if (item.Selected)
+                foreach (ListItem item in listData.Items)
                 {
-                    uniqueDataList.Add(item.Value.ToLower().Trim());
+                    if (item.Selected)
+                    {
+                        uniqueDataList.Add(item.Value.ToLower().Trim());
+                    }
                 }
             }
-        }
 
-        if (textData != null)
-        {
-            foreach (var item in textData)
+            if (textData != null)
             {
-                uniqueDataList.Add(item.ToLower().Trim());
+                foreach (var item in textData)
+                {
+                    uniqueDataList.Add(item.ToLower().Trim());
+                }
             }
-        }
 
-        return uniqueDataList;
+            return uniqueDataList;
+        }
     }
 }

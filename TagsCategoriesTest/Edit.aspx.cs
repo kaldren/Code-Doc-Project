@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
+using TagsCategoriesTest.App_Code.Wiki;
 
 namespace TagsCategoriesTest
 {
