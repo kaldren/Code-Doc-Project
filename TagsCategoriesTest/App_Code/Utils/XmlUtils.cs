@@ -32,28 +32,6 @@ namespace TagsCategoriesTest.App_Code.Utils
             return (data == null) ? false : true;
         }
 
-        public static bool ReferenceExist(XDocument doc, string parentNode, string attrTitle, string attrValue)
-        {
-            XElement data = null;
-
-            try
-            {
-                data =
-                    doc.Root.Elements(parentNode)
-                    .Elements()
-                    .Where(p => p.Attribute(attrTitle).Value == attrValue)
-                    .FirstOrDefault();
-            }
-            catch (NullReferenceException)
-            {
-                Console.WriteLine("Wrong XML naming format (Pascal Case required).");
-                return false;
-            }
-
-
-            return (data == null) ? false : true;
-        }
-
         // Gets the last node's Id (could increment it by increment)
         public static string GenerateNodeId(XDocument doc, string xmlParent, string xmlChild, string xmlChildAttribute, string xmlAttributeValue, int increment = 1)
         {
@@ -116,10 +94,11 @@ namespace TagsCategoriesTest.App_Code.Utils
             return null;
         }
 
+        // Update the references
         public static string UpdateReferences(XDocument doc, string parentNode, string title)
         {
             // Create default node if the node list is empty
-            if (!ReferenceExist(doc, parentNode, "Title", title))
+            if (!XmlElementExist(doc, parentNode, "Title", title))
             {
                 return "1";
             }
