@@ -47,16 +47,16 @@ namespace TagsCategoriesTest.App_Code.Wiki
         {
             foreach (var item in data)
             {
+                // Create new Tag / Category 
                 if (!XmlUtils.XmlElementExist(WikiXML, xmlParent, xmlChildAttribute, item))
                 {
-                    // Add it
                     WikiXML.Root
                             .Element(xmlParent)
                             .Add(
                                 new XElement(xmlChild,
                                 new XAttribute("Id", XmlUtils.GenerateNodeId(WikiXML, xmlParent, xmlChild, xmlChildAttribute, item)),
                                 new XAttribute(xmlChildAttribute, item),
-                                new XAttribute("Referenced", XmlUtils.UpdateReferences(WikiXML, xmlParent, xmlChild)))
+                                new XAttribute("Referenced", XmlUtils.UpdateReferences(WikiXML, xmlParent, xmlChild, 1)))
                             );
                 }
                 else
@@ -74,27 +74,11 @@ namespace TagsCategoriesTest.App_Code.Wiki
 
         private void AddWikiEntry(WikiDTO wiki)
         {
-            // Add all new tags / categories (If they don't already exist in the XML)
+            // Add all new tags / categories 
             AddWikiNodes(wiki.Categories, "Categories", "Category", "Title");
             AddWikiNodes(wiki.Tags, "Tags", "Tag", "Title");
-
-            // Add the WikiEntry
-            XElement wikiEntry =
-                    new XElement("WikiEntry",
-                        new XAttribute("Id", Guid.NewGuid()),
-                        new XAttribute("CreatedBy", "kaloyan@kukui.com"),
-                        new XAttribute("CreatedAt", DateTimeOffset.UtcNow.ToString()),
-                        new XAttribute("UpdatedBy", "kaloyan@kukui.com"),
-                        new XAttribute("UpdatedAt", DateTimeOffset.UtcNow.ToString()),
-                        new XAttribute("CategoryIds", XmlUtils.FilterHashData(WikiXML, wiki.Categories, "Categories", "Id")),
-                        new XAttribute("TagIds", XmlUtils.FilterHashData(WikiXML, wiki.Tags, "Tags", "Id")),
-                        new XElement("Title", wiki.Title),
-                        new XElement("Content", new XCData(wiki.Content))
-                    );
-            WikiXML.Root.Element("WikiEntries").Add(wikiEntry);
-            WikiXML.Save(_xmlFilePath);
+            XmlUtils.AddWikiEntry(WikiXML, wiki);
         }
-
 
         // CRUD operations
 
@@ -129,33 +113,14 @@ namespace TagsCategoriesTest.App_Code.Wiki
         // Edit wiki
         public static void EditWiki(string wikiId, string wikiTitle, string wikiContent)
         {
-            var data = WikiXML.Root
-                                .Elements("WikiEntries")
-                                .Elements()
-                                .Where(p => p.Attribute("Id")
-                                .Value == wikiId)
-                                .FirstOrDefault();
-
-            data.Element("Title").Value = wikiTitle;
-            data.Element("Content").Value = wikiContent;
-            data.Attribute("UpdatedAt").Value = DateTimeOffset.UtcNow.ToString();
-            XmlUtils.SaveXML(WikiXML, _xmlFilePath);
+            XmlUtils.EditWikiEntry(WikiAPI.WikiXML, wikiId, wikiTitle, wikiContent);
         }
 
         // Delete wiki
         [WebMethod]
         public static void DeleteWiki(string id)
         {
-            WikiXML.Root
-                    .Elements("WikiEntries")
-                    .Elements()
-                    .Where(p => p.Attribute("Id")
-                    .Value == id)
-                    .Remove();
-
-            // Check if there are tags / categories which are not used 
-
-            WikiXML.Save(_xmlFilePath);
+            XmlUtils.DeleteWikiEntry(WikiXML, id);
         }
         #endregion Methods
     }

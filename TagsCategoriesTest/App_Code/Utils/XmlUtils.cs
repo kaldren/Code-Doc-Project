@@ -9,6 +9,19 @@ namespace TagsCategoriesTest.App_Code.Utils
 {
     public static class XmlUtils
     {
+        private static XElement GetAttributeValue(XDocument doc, string element, string attr, string attrValue)
+        {
+            var node = doc.Descendants(element).Where(p => p.Attribute(attr).Value == attrValue).FirstOrDefault();
+
+            if (node == null)
+            {
+                return null;
+            }
+
+            return node;
+        }
+
+        #region Methods
         // Checks if given value exists in the given xml node
         public static bool XmlElementExist(XDocument doc, string parentNode, string attrName, string attrValue)
         {
@@ -95,7 +108,7 @@ namespace TagsCategoriesTest.App_Code.Utils
         }
 
         // Update the references
-        public static string UpdateReferences(XDocument doc, string parentNode, string title)
+        public static string UpdateReferences(XDocument doc, string parentNode, string title, int factor)
         {
             // Create default node if the node list is empty
             if (!XmlElementExist(doc, parentNode, "Title", title))
@@ -119,16 +132,129 @@ namespace TagsCategoriesTest.App_Code.Utils
                     throw new ArgumentException(data + " is not a numeric string");
                 }
 
-                newReference += 1;
+                newReference += factor;
 
                 return newReference.ToString();
             }
         }
 
+        // Add new WikiEntry
+        public static void AddWikiEntry(XDocument doc, WikiDTO wiki)
+        {
+            XElement wikiEntry =
+                    new XElement("WikiEntry",
+                        new XAttribute("Id", Guid.NewGuid()),
+                        new XAttribute("CreatedBy", "kaloyan@kukui.com"),
+                        new XAttribute("CreatedAt", DateTimeOffset.UtcNow.ToString()),
+                        new XAttribute("UpdatedBy", "kaloyan@kukui.com"),
+                        new XAttribute("UpdatedAt", DateTimeOffset.UtcNow.ToString()),
+                        new XAttribute("CategoryIds", XmlUtils.FilterHashData(doc, wiki.Categories, "Categories", "Id")),
+                        new XAttribute("TagIds", XmlUtils.FilterHashData(doc, wiki.Tags, "Tags", "Id")),
+                        new XElement("Title", wiki.Title),
+                        new XElement("Content", new XCData(wiki.Content))
+                    );
+            doc.Root.Element("WikiEntries").Add(wikiEntry);
+            doc.Save(WikiAPI.XmlFilePath);
+        }
+
+        // Edit WikiEntry
+        public static void EditWikiEntry(XDocument doc, string wikiId, string wikiTitle, string wikiContent)
+        {
+            var data = doc.Root
+                    .Elements("WikiEntries")
+                    .Elements()
+                    .Where(p => p.Attribute("Id")
+                    .Value == wikiId)
+                    .FirstOrDefault();
+
+            data.Element("Title").Value = wikiTitle;
+            data.Element("Content").Value = wikiContent;
+            data.Attribute("UpdatedAt").Value = DateTimeOffset.UtcNow.ToString();
+            XmlUtils.SaveXML(doc, WikiAPI.XmlFilePath);
+        }
+
+        // Delete WikiEntry
+        public static void DeleteWikiEntry(XDocument doc, string id)
+        {
+            var delEntry = doc.Root
+                    .Elements("WikiEntries")
+                    .Elements()
+                    .Where(p => p.Attribute("Id")
+                    .Value == id)
+                    .FirstOrDefault();
+
+            FilterReferences(doc, delEntry);
+            delEntry.Remove();
+            doc.Save(WikiAPI.XmlFilePath);
+        }
+
+        public static void RemoveElement(XDocument doc, string parentElement, string childAttr, string childValue)
+        {
+            doc.Descendants(parentElement)
+                .Where(p => p.Attribute(childAttr).Value == childValue).Remove();
+        }
+
+        public static void UpdateReference(XDocument doc, string parentElement, string childAttr, string childValue)
+        {
+            var data = doc.Descendants(parentElement)
+                            .Where(item => item.Attribute(childAttr).Value == childValue)
+                            .ToList();
+
+            foreach (var item in data)
+            {
+                item.Attribute("Referenced").Value = (Convert.ToInt32(item.Attribute("Referenced").Value) - 1).ToString();
+            }
+        }
+
+        private static void FilterReferences(XDocument doc, XElement element)
+        {
+
+            // Filter Categories
+            var tempCategories = element.Attribute("CategoryIds").Value;
+            var filteredCategories = tempCategories.Split(',');
+            for (int i = 0; i < filteredCategories.Length; i++)
+            {
+                var tempy = doc.Descendants("Categories")
+                            .Elements()
+                            .Where(p => p.Attribute("Title").Value == filteredCategories[i])
+                            .Select(p => p.Attribute("Referenced").Value).FirstOrDefault();
+
+                if (tempy == "1")
+                {
+                    RemoveElement(WikiAPI.WikiXML, "Category", "Title", filteredCategories[i]);
+                }
+                else
+                {
+                    UpdateReference(WikiAPI.WikiXML, "Category", "Title", filteredCategories[i]);
+                }
+            }
+
+            // Filter Tags
+            var tempTags = element.Attribute("TagIds").Value;
+            var filteredTags = tempCategories.Split(',');
+            for (int i = 0; i < filteredCategories.Length; i++)
+            {
+                var tempy = doc.Descendants("Tags")
+                            .Elements()
+                            .Where(p => p.Attribute("Title").Value == filteredCategories[i])
+                            .Select(p => p.Attribute("Referenced").Value).FirstOrDefault();
+
+                if (tempy == "1")
+                {
+                    RemoveElement(WikiAPI.WikiXML, "Tag", "Title", filteredCategories[i]);
+                }
+                else
+                {
+                    UpdateReference(WikiAPI.WikiXML, "Tag", "Title", filteredCategories[i]);
+                }
+            }
+
+        }
         // Save XML data
         public static void SaveXML(XDocument doc, string filepath)
         {
             doc.Save(filepath);
         }
+        #endregion Methods
     }
 }

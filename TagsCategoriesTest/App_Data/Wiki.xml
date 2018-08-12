@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Wiki>
   <Categories>
-    <Category Id="1" Title="animals" Referenced="2" />
-    <Category Id="2" Title="frogs" Referenced="2" />
-    <Category Id="3" Title="newcategory" Referenced="1" />
-    <Category Id="4" Title="google" Referenced="1" />
+    <Category Id="1" Title="animals" Referenced="12" />
+    <Category Id="2" Title="frogs" Referenced="12" />
+    <Category Id="3" Title="newcategory" Referenced="10" />
+    <Category Id="4" Title="google" Referenced="6" />
   </Categories>
   <Tags>
-    <Tag Id="1" Title="cats" Referenced="2" />
-    <Tag Id="2" Title="dogs" Referenced="2" />
-    <Tag Id="3" Title="newtag" Referenced="1" />
-    <Tag Id="4" Title="microsoft" Referenced="1" />
+    <Tag Id="1" Title="cats" Referenced="15" />
+    <Tag Id="2" Title="dogs" Referenced="15" />
+    <Tag Id="3" Title="newtag" Referenced="9" />
+    <Tag Id="4" Title="microsoft" Referenced="9" />
   </Tags>
   <WikiEntries>
     <WikiEntry Id="b44c57a0-4d5c-40b0-9587-497f6a33c679" CreatedBy="kaloyan@kukui.com" CreatedAt="8/12/2018 11:47:55 AM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/12/2018 11:47:55 AM +00:00" CategoryIds="animals,frogs,newcategory,google" TagIds="cats,dogs,newtag,microsoft">
@@ -20,6 +20,52 @@
     <WikiEntry Id="b3a3177b-2bed-410a-8510-959364668767" CreatedBy="kaloyan@kukui.com" CreatedAt="8/12/2018 11:48:00 AM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/12/2018 11:48:00 AM +00:00" CategoryIds="animals,frogs" TagIds="cats,dogs">
       <Title>This is my title</Title>
       <Content><![CDATA[dfadasdasa]]></Content>
+    </WikiEntry>
+    <WikiEntry Id="23235228-c9c2-42f6-ac41-c84881e7c5dc" CreatedBy="kaloyan@kukui.com" CreatedAt="8/12/2018 1:28:43 PM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/12/2018 1:28:43 PM +00:00" CategoryIds="animals,frogs" TagIds="cats,dogs">
+      <Title>This is my title</Title>
+      <Content><![CDATA[dfadasdasa]]></Content>
+    </WikiEntry>
+    <WikiEntry Id="5987b649-b26a-4df2-a31b-ea2bc2dddf83" CreatedBy="kaloyan@kukui.com" CreatedAt="8/12/2018 1:28:54 PM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/12/2018 1:28:54 PM +00:00" CategoryIds="newcategory,animals,frogs" TagIds="cats,dogs">
+      <Title>This is my title</Title>
+      <Content><![CDATA[vdfvgdgdfgd]]></Content>
+    </WikiEntry>
+    <WikiEntry Id="ec4fa4db-57d2-4ffc-8a53-8392e27558b2" CreatedBy="kaloyan@kukui.com" CreatedAt="8/12/2018 1:29:10 PM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/12/2018 1:29:10 PM +00:00" CategoryIds="newcategory,animals,frogs" TagIds="cats,dogs">
+      <Title>This is my title</Title>
+      <Content><![CDATA[vdfvgdgdfgd]]></Content>
+    </WikiEntry>
+    <WikiEntry Id="443fda27-3b03-4359-b8f6-cc2aa96b415e" CreatedBy="kaloyan@kukui.com" CreatedAt="8/12/2018 1:29:31 PM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/12/2018 1:29:31 PM +00:00" CategoryIds="newcategory,animals,frogs" TagIds="cats,dogs">
+      <Title>This is my title</Title>
+      <Content><![CDATA[vdfvgdgdfgd]]></Content>
+    </WikiEntry>
+    <WikiEntry Id="75096a6f-8e2e-4059-aa21-64db23661fe5" CreatedBy="kaloyan@kukui.com" CreatedAt="8/12/2018 1:38:41 PM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/12/2018 1:38:41 PM +00:00" CategoryIds="newcategory,animals,frogs" TagIds="cats,dogs">
+      <Title>This is my title</Title>
+      <Content><![CDATA[vdfvgdgdfgd]]></Content>
+    </WikiEntry>
+    <WikiEntry Id="e4f0c23b-f723-467d-9b9f-95ef78f66413" CreatedBy="kaloyan@kukui.com" CreatedAt="8/12/2018 1:39:04 PM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/12/2018 1:39:04 PM +00:00" CategoryIds="animals,frogs,newcategory,google" TagIds="cats,dogs,newtag,microsoft">
+      <Title>This is my title</Title>
+      <Content><![CDATA[```
+<script></script>
+```
+### TEST]]></Content>
+    </WikiEntry>
+    <WikiEntry Id="4f349ed8-5fba-49e6-bbf7-f751c6f8acc7" CreatedBy="kaloyan@kukui.com" CreatedAt="8/12/2018 1:39:21 PM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/12/2018 1:39:21 PM +00:00" CategoryIds="animals,frogs,newcategory,google" TagIds="cats,dogs,newtag,microsoft">
+      <Title>This is my title</Title>
+      <Content><![CDATA[```
+<script></script>
+```
+### TEST]]></Content>
+    </WikiEntry>
+    <WikiEntry Id="915d760c-5dac-43d6-a9f3-86e7a8d7e5af" CreatedBy="kaloyan@kukui.com" CreatedAt="8/12/2018 5:13:42 PM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/12/2018 5:13:42 PM +00:00" CategoryIds="animals,frogs,newcategory,google" TagIds="cats,dogs,newtag,microsoft">
+      <Title>This is my title</Title>
+      <Content><![CDATA[test]]></Content>
+    </WikiEntry>
+    <WikiEntry Id="15ef4b67-1d14-481f-99be-a8ba50040e0e" CreatedBy="kaloyan@kukui.com" CreatedAt="8/12/2018 5:13:47 PM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/12/2018 5:13:47 PM +00:00" CategoryIds="animals,frogs,newcategory,google" TagIds="cats,dogs,newtag,microsoft">
+      <Title>This is my title</Title>
+      <Content><![CDATA[test]]></Content>
+    </WikiEntry>
+    <WikiEntry Id="d5f55226-512a-448a-a868-2f8514a2aae6" CreatedBy="kaloyan@kukui.com" CreatedAt="8/12/2018 5:13:49 PM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/12/2018 5:13:49 PM +00:00" CategoryIds="animals,frogs,newcategory,google" TagIds="cats,dogs,newtag,microsoft">
+      <Title>This is my title</Title>
+      <Content><![CDATA[test]]></Content>
     </WikiEntry>
   </WikiEntries>
 </Wiki>
