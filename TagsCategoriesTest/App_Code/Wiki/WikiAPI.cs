@@ -61,19 +61,7 @@ namespace TagsCategoriesTest.App_Code.Wiki
                 }
                 else
                 {
-                    // Increment Referenced Attribute to all existing nodes
-                    //WikiXML.Root
-                    //        .Elements(xmlParent)
-                    //        .Elements()
-                    //        .Where(p => p.Attribute("Title").Value == item)
-                    //        .Single(p => p.Attribute("Referenced").Value == (Convert.ToInt32(p.Attribute("Referenced").Value) + 1).ToString());
-
-                    //var node = WikiXML.Root
-                    //            .Elements(xmlParent)
-                    //            .Elements()
-                    //            .Where(p => p.Attribute(xmlChild).Value == xmlChildAttribute);
-
-                    var node = WikiXML.Descendants("Category").Where(p => p.Attribute("Title").Value == item).FirstOrDefault();
+                    var node = WikiXML.Descendants(xmlParent).Elements(xmlChild).Where(p => p.Attribute("Title").Value == item).FirstOrDefault();
 
                     if (node != null)
                     {

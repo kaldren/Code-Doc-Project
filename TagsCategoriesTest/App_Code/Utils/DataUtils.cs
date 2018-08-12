@@ -48,25 +48,25 @@ namespace TagsCategoriesTest.App_Code.Utils
         // Bind categories 
         public static void BindCategories(XDocument doc, ListBox categoryId)
         {
-            categoryId.DataSource = doc.Root
-                                        .Elements("Categories")
-                                        .Elements()
-                                        .Select(c => c.Attribute("Title").Value)
-                                        .ToList();
+            var node = doc.Descendants("Categories").Elements("Category").Select(p => p.Attribute("Title").Value).ToList();
 
-            categoryId.DataBind();
+            if (node != null)
+            {
+                categoryId.DataSource = node;
+                categoryId.DataBind();
+            }
         }
 
         // Bind tags 
         public static void BindTags(XDocument doc, ListBox tagsId)
         {
-            tagsId.DataSource = doc.Root
-                                    .Elements("Tags")
-                                    .Elements()
-                                    .Select(c => c.Attribute("Title").Value)
-                                    .ToList();
+            var node = doc.Descendants("Tags").Elements("Tag").Select(p => p.Attribute("Title").Value).ToList();
 
-            tagsId.DataBind();
+            if (node != null)
+            {
+                tagsId.DataSource = node;
+                tagsId.DataBind();
+            }
         }
     }
 }

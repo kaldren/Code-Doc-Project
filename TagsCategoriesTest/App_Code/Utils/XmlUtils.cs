@@ -121,7 +121,6 @@ namespace TagsCategoriesTest.App_Code.Utils
             // Create default node if the node list is empty
             if (!ReferenceExist(doc, parentNode, "Title", title))
             {
-                //XDocument doc, string parentNode, string attrName, string attrValue
                 return "1";
             }
             else

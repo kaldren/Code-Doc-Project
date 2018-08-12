@@ -32,8 +32,8 @@ namespace TagsCategoriesTest
                     DateTimeOffset.UtcNow,
                     DateTimeOffset.UtcNow,
                     "JohnDoe",
-                    DataUtils.GetUniqueData(lbTags, txtTags),
-                    DataUtils.GetUniqueData(lbCategories, txtCategories)
+                    DataUtils.GetUniqueData(lbCategories, txtCategories),
+                    DataUtils.GetUniqueData(lbTags, txtTags)
                 );
 
             // Add new entry
