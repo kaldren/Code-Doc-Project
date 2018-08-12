@@ -24,6 +24,9 @@
     <Tag Id="47" Title="sheep" />
     <Tag Id="48" Title="lions" />
     <Tag Id="49" Title="bmw" />
+    <Tag Id="50" Title="dogs" />
+    <Tag Id="51" Title="cats" />
+    <Tag Id="52" Title="jackie" />
   </Tags>
   <WikiEntries>
     <WikiEntry Id="6fed545c-b511-4d8a-b453-5f47686ec2e1" CreatedBy="kaloyan@kukui.com" CreatedAt="2018-08-04T10:25:27.700727Z" UpdatedBy="kaloyan@kukui.com" UpdatedAt="2018-08-04T10:25:27.700727Z" CategoryIds="cats,dogs" TagIds="animals,aliens,frogs">
@@ -72,7 +75,7 @@ __double underscores__</Content>
                 );
 
         wikiRoot.Root.Element("WikiEntries").Add(wikiEntry);
-        wikiRoot.Save(XmlFilePath);
+        wikiRoot.Save(_xmlFilePath);
     }
         ]]></Content>
     </WikiEntry>
@@ -94,7 +97,7 @@ __double underscores__</Content>
                     new XElement("Content", new XCData(wiki.Content))
                 );
         wikiRoot.Root.Element("WikiEntries").Add(wikiEntry);
-        wikiRoot.Save(XmlFilePath);
+        wikiRoot.Save(_xmlFilePath);
     }
 ```]]></Content>
     </WikiEntry>
@@ -116,7 +119,7 @@ __double underscores__</Content>
                     new XElement("Content", new XCData(wiki.Content))
                 );
         wikiRoot.Root.Element("WikiEntries").Add(wikiEntry);
-        wikiRoot.Save(XmlFilePath);
+        wikiRoot.Save(_xmlFilePath);
     }
 ```]]></Content>
     </WikiEntry>
@@ -138,7 +141,7 @@ __double underscores__</Content>
                     new XElement("Content", new XCData(wiki.Content))
                 );
         wikiRoot.Root.Element("WikiEntries").Add(wikiEntry);
-        wikiRoot.Save(XmlFilePath);
+        wikiRoot.Save(_xmlFilePath);
     }
 ```]]></Content>
     </WikiEntry>
@@ -350,6 +353,26 @@ __double underscores__</Content>
     <WikiEntry Id="9cdb4a40-5ec6-4e88-813c-ce64ce733c8d" CreatedBy="kaloyan@kukui.com" CreatedAt="8/11/2018 12:28:06 PM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/11/2018 12:28:06 PM +00:00" CategoryIds="test" TagIds="test">
       <Title>bastardo</Title>
       <Content><![CDATA[bastardo content]]></Content>
+    </WikiEntry>
+    <WikiEntry Id="9505b3ed-28c4-4114-b432-1dea2a9dc1aa" CreatedBy="kaloyan@kukui.com" CreatedAt="8/12/2018 7:22:58 AM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/12/2018 7:22:58 AM +00:00" CategoryIds="frogs" TagIds="dogs">
+      <Title>kaloqn king</Title>
+      <Content><![CDATA[kaloqn king]]></Content>
+    </WikiEntry>
+    <WikiEntry Id="e326f7b8-1a22-4a9d-9fca-9a563ab3ac38" CreatedBy="kaloyan@kukui.com" CreatedAt="8/12/2018 7:39:22 AM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/12/2018 7:39:22 AM +00:00" CategoryIds="frogs" TagIds="dogs">
+      <Title>John Doe was here</Title>
+      <Content><![CDATA[yeah.. he was]]></Content>
+    </WikiEntry>
+    <WikiEntry Id="72eceed2-77fd-4c1d-aa19-364ded6fb238" CreatedBy="kaloyan@kukui.com" CreatedAt="8/12/2018 7:39:31 AM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/12/2018 7:39:31 AM +00:00" CategoryIds="rabbits" TagIds="lions">
+      <Title>John Doe was here</Title>
+      <Content><![CDATA[YES! HE WAS!]]></Content>
+    </WikiEntry>
+    <WikiEntry Id="0b8ef9c3-9594-41d1-b8b4-4c854eaf4206" CreatedBy="kaloyan@kukui.com" CreatedAt="8/12/2018 7:41:15 AM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/12/2018 7:41:15 AM +00:00" CategoryIds="rabbits" TagIds="lions">
+      <Title>John Doe was here</Title>
+      <Content><![CDATA[YES! HE WAS!]]></Content>
+    </WikiEntry>
+    <WikiEntry Id="640a3b20-1d67-4f77-8de8-afcdd07b84ee" CreatedBy="kaloyan@kukui.com" CreatedAt="8/12/2018 7:41:29 AM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/12/2018 7:41:29 AM +00:00" CategoryIds="aliens,frogs" TagIds="cats,dogs,lions,sheep,jackie">
+      <Title>WHO AM I?</Title>
+      <Content><![CDATA[WHO AM I?]]></Content>
     </WikiEntry>
   </WikiEntries>
 </Wiki>

@@ -54,7 +54,7 @@ namespace TagsCategoriesTest.App_Code.Utils
             return newId.ToString();
         }
 
-        // Filter Data
+        // Filter data
         public static string FilterHashData(XDocument doc, HashSet<string> data, string xmlParent, string xmlChildAttribute)
         {
             HashSet<string> filteredData = new HashSet<string>();
@@ -70,9 +70,23 @@ namespace TagsCategoriesTest.App_Code.Utils
             return string.Join(",", filteredData);
         }
 
-        // Get First Node
+        // Get node by attribute
+        public static XElement GetNodeByAttributeValue (XDocument doc, string parentNode, string childAttribute, string expectedValue)
+        {
+            if (!string.IsNullOrEmpty(expectedValue))
+            {
+                return doc.Root
+                        .Elements(parentNode)
+                        .Elements()
+                        .Where(p => p.Attribute(childAttribute)
+                        .Value == expectedValue)
+                        .FirstOrDefault();
+            }
 
-        // Save XML Data
+            return null;
+        }
+
+        // Save XML data
         public static void SaveXML(XDocument doc, string filepath)
         {
             doc.Save(filepath);

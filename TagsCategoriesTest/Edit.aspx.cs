@@ -18,7 +18,7 @@ namespace TagsCategoriesTest
             {
                 string queryParam = Request.QueryString["id"];
 
-                var wiki = WikiAPI.GetWikiById(queryParam);
+                var wiki = WikiAPI.GetWikiById("WikiEntries", queryParam);
 
                 txtTitle.Text = wiki.Element("Title").Value;
                 txtContent.Text = wiki.Element("Content").Value;

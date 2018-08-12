@@ -45,7 +45,7 @@ namespace TagsCategoriesTest.App_Code.Utils
             return CommonMark.CommonMarkConverter.Convert(code);
         }
 
-        // Bind Categories 
+        // Bind categories 
         public static void BindCategories(XDocument doc, ListBox categoryId)
         {
             categoryId.DataSource = doc.Root
@@ -57,7 +57,7 @@ namespace TagsCategoriesTest.App_Code.Utils
             categoryId.DataBind();
         }
 
-        // Bind Tags 
+        // Bind tags 
         public static void BindTags(XDocument doc, ListBox tagsId)
         {
             tagsId.DataSource = doc.Root
