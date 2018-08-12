@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Xml.Linq;
+using TagsCategoriesTest.App_Code.Wiki;
 
 namespace TagsCategoriesTest.App_Code.Utils
 {
@@ -18,8 +19,29 @@ namespace TagsCategoriesTest.App_Code.Utils
                 data =
                     doc.Root.Elements(parentNode)
                     .Elements()
-                    .Where(p => p.Attribute(attrName)
-                    .Value == attrValue)
+                    .Where(p => p.Attribute(attrName).Value == attrValue)
+                    .FirstOrDefault();
+            }
+            catch (NullReferenceException)
+            {
+                Console.WriteLine("Wrong XML naming format (Pascal Case required).");
+                return false;
+            }
+
+
+            return (data == null) ? false : true;
+        }
+
+        public static bool ReferenceExist(XDocument doc, string parentNode, string attrTitle, string attrValue)
+        {
+            XElement data = null;
+
+            try
+            {
+                data =
+                    doc.Root.Elements(parentNode)
+                    .Elements()
+                    .Where(p => p.Attribute(attrTitle).Value == attrValue)
                     .FirstOrDefault();
             }
             catch (NullReferenceException)
@@ -33,25 +55,33 @@ namespace TagsCategoriesTest.App_Code.Utils
         }
 
         // Gets the last node's Id (could increment it by increment)
-        public static string GenerateNodeId(XDocument doc, string parentNode, int increment = 1)
+        public static string GenerateNodeId(XDocument doc, string xmlParent, string xmlChild, string xmlChildAttribute, string xmlAttributeValue, int increment = 1)
         {
-            var data =
-                doc.Root.Elements(parentNode)
-                .Elements()
-                .Last()
-                .Attribute("Id").Value;
-
-            int newId = -999;
-            var newdata = Int32.TryParse(data, out newId);
-
-            if (!newdata)
+            // Create default node if the node list is empty
+            if (!XmlElementExist(doc, xmlParent, "Id", "1"))
             {
-                throw new ArgumentException(data + " is not a numeric string");
+                return "1";
             }
+            else
+            {
+                var data =
+                    doc.Root.Elements(xmlParent)
+                    .Elements()
+                    .Last()
+                    .Attribute("Id").Value;
 
-            newId += increment;
+                int newId = -999;
+                var newdata = Int32.TryParse(data, out newId);
 
-            return newId.ToString();
+                if (!newdata)
+                {
+                    throw new ArgumentException(data + " is not a numeric string");
+                }
+
+                newId += increment;
+
+                return newId.ToString();
+            }
         }
 
         // Filter data
@@ -84,6 +114,37 @@ namespace TagsCategoriesTest.App_Code.Utils
             }
 
             return null;
+        }
+
+        public static string UpdateReferences(XDocument doc, string parentNode, string title)
+        {
+            // Create default node if the node list is empty
+            if (!ReferenceExist(doc, parentNode, "Title", title))
+            {
+                //XDocument doc, string parentNode, string attrName, string attrValue
+                return "1";
+            }
+            else
+            {
+                var data = doc.Root
+                            .Elements(parentNode)
+                            .Elements()
+                            .Where(p => p.Attribute("Title").Value == title)
+                            .Select(p => (string)p.Attribute("Referenced").Value).ToString();
+
+
+                int newReference = -999;
+                var newdata = Int32.TryParse(data, out newReference);
+
+                if (!newdata)
+                {
+                    throw new ArgumentException(data + " is not a numeric string");
+                }
+
+                newReference += 1;
+
+                return newReference.ToString();
+            }
         }
 
         // Save XML data
