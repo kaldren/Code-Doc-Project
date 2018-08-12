@@ -77,7 +77,27 @@
                                 <ItemTemplate>
                                     <h3><%# Eval("Title") %></h3>
                                     <p><%# Eval("Content") %></p>
-                                    <a href="/Edit.aspx?id=<%# Eval("WikiId") %>" target="_blank">Edit</a>
+                                    <a href="/Edit.aspx?id=<%# Eval("WikiId") %>" class="btn btn-md btn-success" target="_blank">Edit</a>
+                                    <a href="javascript:void(0)" class="btn btn-md btn-danger" data-toggle="modal" data-target="#myModal"">Delete</a>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">Deleting Wiki</h4>
+                                          </div>
+                                          <div class="modal-body" id="modal-response">
+                                            Are you sure you want to delete this wiki?
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="button" class="js-delete-wiki btn btn-danger" data-wiki-id="<%# Eval("WikiId") %>">Delete</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
                                 </ItemTemplate>
                             </asp:Repeater>
                         </div>
@@ -102,6 +122,31 @@
             });
         }
 
+
+        // AJAX Call to delete wiki
+        $(".js-delete-wiki").click(function () {
+            $.ajax({
+                type: 'POST',
+                url: 'Wiki.aspx/DeleteWiki',
+                data: "{'id':" + JSON.stringify($(".js-delete-wiki").data("wiki-id")) + "}",
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function () {
+                    // Notice that msg.d is used to retrieve the result object
+                    $("#modal-response").html("<h2>Done.</h2>");
+
+                    setTimeout(redirectToWiki, 2000);
+                }
+            });
+        })
+
+
+        function redirectToWiki() {
+            window.location.replace("/Wiki.aspx")
+        }
+
     </script>
+    <!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 </html>

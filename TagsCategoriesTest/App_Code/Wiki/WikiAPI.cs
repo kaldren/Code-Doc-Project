@@ -132,6 +132,8 @@ namespace TagsCategoriesTest.App_Code.Wiki
                     .Where(p => p.Attribute("Id")
                     .Value == id)
                     .Remove();
+
+            WikiXML.Save(_xmlFilePath);
         }
         #endregion Methods
     }

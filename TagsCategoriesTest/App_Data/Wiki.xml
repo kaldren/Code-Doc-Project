@@ -45,10 +45,6 @@
       <Title>This is my title</Title>
       <Content>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec interdum nulla. Integer ac efficitur sapien, non elementum massa. Etiam justo nunc, tincidunt quis lacus vitae, bibendum pharetra arcu. Pellentesque tortor est, luctus non consectetur et, consequat sit amet massa. Aenean dignissim porta ex, id pulvinar felis fringilla a. Donec convallis tellus vel nisi semper rutrum. Nullam lacinia massa quis sapien tincidunt pellentesque. Ut et augue ornare tellus interdum fermentum eu et metus. Nullam sagittis iaculis nisi sed semper. Praesent vitae placerat nisi, id tristique massa. Vivamus sodales laoreet neque. Morbi faucibus arcu sed rutrum blandit. Vivamus eget tempus ex, eget rutrum lectus. Vestibulum at ipsum leo. Sed id lacinia ligula.</Content>
     </WikiEntry>
-    <WikiEntry Id="e7a1f1e7-1727-4475-8238-58fbea519907" CreatedBy="kaloyan@kukui.com" CreatedAt="2018-08-04T10:26:28.1889241Z" UpdatedBy="kaloyan@kukui.com" UpdatedAt="2018-08-04T10:26:28.1889241Z" CategoryIds="cats,dogs" TagIds="animals,aliens,frogs">
-      <Title>This is my title</Title>
-      <Content>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec interdum nulla. Integer ac efficitur sapien, non elementum massa. Etiam justo nunc, tincidunt quis lacus vitae, bibendum pharetra arcu. Pellentesque tortor est, luctus non consectetur et, consequat sit amet massa. Aenean dignissim porta ex, id pulvinar felis fringilla a. Donec convallis tellus vel nisi semper rutrum. Nullam lacinia massa quis sapien tincidunt pellentesque. Ut et augue ornare tellus interdum fermentum eu et metus. Nullam sagittis iaculis nisi sed semper. Praesent vitae placerat nisi, id tristique massa. Vivamus sodales laoreet neque. Morbi faucibus arcu sed rutrum blandit. Vivamus eget tempus ex, eget rutrum lectus. Vestibulum at ipsum leo. Sed id lacinia ligula.</Content>
-    </WikiEntry>
     <WikiEntry Id="b35fd4c6-761c-47e2-ab38-e3a64be6aae7" CreatedBy="kaloyan@kukui.com" CreatedAt="2018-08-04T13:09:20.1084268Z" UpdatedBy="kaloyan@kukui.com" UpdatedAt="2018-08-04T13:09:20.1084268Z" CategoryIds="cats,dogs" TagIds="animals,aliens,frogs">
       <Title>My First Doc</Title>
       <Content>*single asterisks*
@@ -197,129 +193,6 @@ __double underscores__</Content>
       <Title>This is my title</Title>
       <Content><![CDATA[test]]></Content>
     </WikiEntry>
-    <WikiEntry Id="9ec56cb1-6390-4b83-8ea8-898255c1da33" CreatedBy="kaloyan@kukui.com" CreatedAt="2018-08-11T09:19:46.523955Z" UpdatedBy="kaloyan@kukui.com" UpdatedAt="2018-08-11T09:19:46.523955Z" CategoryIds="code" TagIds="animals,frogs,asshole">
-      <Title>Auto generated ID</Title>
-      <Content><![CDATA[Now we should have an auto-generated ID for our child nodes 
-
-### The code for it is:
-
-```
-    // Get the last Id of a given node and adds increment to it
-    private string GenerateId(string parentNode, int increment = 1)
-    {
-        var data =
-            wikiRoot.Root.Elements(parentNode)
-            .Elements()
-            .Last()
-            .Attribute("Id").Value;
-
-        int newId = -999;
-        var newdata = Int32.TryParse(data, out newId);
-
-        if (!newdata)
-        {
-            throw new ArgumentException(data + " is not a numeric string");
-        }
-
-        newId += increment;
-
-        return newId.ToString();
-    }
-```]]></Content>
-    </WikiEntry>
-    <WikiEntry Id="1a3f1708-61f6-4030-bf70-6e7468d5aa0c" CreatedBy="kaloyan@kukui.com" CreatedAt="2018-08-11T09:20:06.8656901Z" UpdatedBy="kaloyan@kukui.com" UpdatedAt="2018-08-11T09:20:06.8656901Z" CategoryIds="code" TagIds="animals,frogs,asshole">
-      <Title>Auto generated ID</Title>
-      <Content><![CDATA[Now we should have an auto-generated ID for our child nodes 
-
-### The code for it is:
-
-```
-    // Get the last Id of a given node and adds increment to it
-    private string GenerateId(string parentNode, int increment = 1)
-    {
-        var data =
-            wikiRoot.Root.Elements(parentNode)
-            .Elements()
-            .Last()
-            .Attribute("Id").Value;
-
-        int newId = -999;
-        var newdata = Int32.TryParse(data, out newId);
-
-        if (!newdata)
-        {
-            throw new ArgumentException(data + " is not a numeric string");
-        }
-
-        newId += increment;
-
-        return newId.ToString();
-    }
-```]]></Content>
-    </WikiEntry>
-    <WikiEntry Id="7f3fc23a-b537-4e9b-802f-1b3e1a79e3ad" CreatedBy="kaloyan@kukui.com" CreatedAt="2018-08-11T09:20:30.9763811Z" UpdatedBy="kaloyan@kukui.com" UpdatedAt="2018-08-11T09:20:30.9763811Z" CategoryIds="code" TagIds="animals,frogs,asshole">
-      <Title>Auto generated ID</Title>
-      <Content><![CDATA[Now we should have an auto-generated ID for our child nodes 
-
-### The code for it is:
-
-```
-    // Get the last Id of a given node and adds increment to it
-    private string GenerateId(string parentNode, int increment = 1)
-    {
-        var data =
-            wikiRoot.Root.Elements(parentNode)
-            .Elements()
-            .Last()
-            .Attribute("Id").Value;
-
-        int newId = -999;
-        var newdata = Int32.TryParse(data, out newId);
-
-        if (!newdata)
-        {
-            throw new ArgumentException(data + " is not a numeric string");
-        }
-
-        newId += increment;
-
-        return newId.ToString();
-    }
-```]]></Content>
-    </WikiEntry>
-    <WikiEntry Id="c5b17210-e29d-45de-b01c-3d3e2f9b547a" CreatedBy="kaloyan@kukui.com" CreatedAt="2018-08-11T09:20:54.0010849Z" UpdatedBy="kaloyan@kukui.com" UpdatedAt="2018-08-11T09:20:54.0010849Z" CategoryIds="code,csharp,c#" TagIds="animals,frogs,asshole">
-      <Title>Auto generated ID v2</Title>
-      <Content>Now we should have an auto-generated ID for our child nodes 
-
-### The code for it is:
-
-```
-    // Get the last Id of a given node and adds increment to it
-    private string GenerateId(string parentNode, int increment = 1)
-    {
-        var data =
-            wikiRoot.Root.Elements(parentNode)
-            .Elements()
-            .Last()
-            .Attribute("Id").Value;
-
-        int newId = -999;
-        var newdata = Int32.TryParse(data, out newId);
-
-        if (!newdata)
-        {
-            throw new ArgumentException(data + " is not a numeric string");
-        }
-
-        newId += increment;
-
-        return newId.ToString();
-    }
-```
-
-### some heading
-## Another heading</Content>
-    </WikiEntry>
     <WikiEntry Id="be10fea6-7ebe-4c55-ba25-6b2d31d9b480" CreatedBy="kaloyan@kukui.com" CreatedAt="2018-08-11T10:04:05.9568572Z" UpdatedBy="kaloyan@kukui.com" UpdatedAt="2018-08-11T10:04:05.9568572Z" CategoryIds="test" TagIds="test">
       <Title>test</Title>
       <Content><![CDATA[test]]></Content>
@@ -332,24 +205,6 @@ __double underscores__</Content>
       <Title>New title? V2 YES</Title>
       <Content>test something else</Content>
     </WikiEntry>
-    <WikiEntry Id="36155df5-ce58-4d16-8c79-27ffdc224dc8" CreatedBy="kaloyan@kukui.com" CreatedAt="8/11/2018 12:17:50 PM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/11/2018 12:17:50 PM +00:00" CategoryIds="animals,aliens,frogs" TagIds="sheep">
-      <Title>This is my title</Title>
-      <Content><![CDATA[test]]></Content>
-    </WikiEntry>
-    <WikiEntry Id="a940a060-5b0a-4389-9f2f-dda2a8b2189b" CreatedBy="kaloyan@kukui.com" CreatedAt="8/11/2018 12:27:05 PM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/11/2018 12:27:05 PM +00:00" CategoryIds="animals,rabbits,test" TagIds="lions,sheep,bmw">
-      <Title>Hello motherfuckers!</Title>
-      <Content><![CDATA[Hello!
-```
-<script></script>
-```]]></Content>
-    </WikiEntry>
-    <WikiEntry Id="f1e9b689-752e-4d3c-9ba7-8b700f26d61c" CreatedBy="kaloyan@kukui.com" CreatedAt="8/11/2018 12:27:58 PM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/11/2018 12:27:58 PM +00:00" CategoryIds="animals,rabbits,test" TagIds="lions,sheep,bmw">
-      <Title>Hello motherfuckers!</Title>
-      <Content><![CDATA[Hello!
-```
-<script></script>
-```]]></Content>
-    </WikiEntry>
     <WikiEntry Id="9cdb4a40-5ec6-4e88-813c-ce64ce733c8d" CreatedBy="kaloyan@kukui.com" CreatedAt="8/11/2018 12:28:06 PM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/11/2018 12:28:06 PM +00:00" CategoryIds="test" TagIds="test">
       <Title>bastardo</Title>
       <Content><![CDATA[bastardo content]]></Content>
@@ -358,10 +213,6 @@ __double underscores__</Content>
       <Title>kaloqn king</Title>
       <Content><![CDATA[kaloqn king]]></Content>
     </WikiEntry>
-    <WikiEntry Id="e326f7b8-1a22-4a9d-9fca-9a563ab3ac38" CreatedBy="kaloyan@kukui.com" CreatedAt="8/12/2018 7:39:22 AM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/12/2018 7:39:22 AM +00:00" CategoryIds="frogs" TagIds="dogs">
-      <Title>John Doe was here</Title>
-      <Content><![CDATA[yeah.. he was]]></Content>
-    </WikiEntry>
     <WikiEntry Id="72eceed2-77fd-4c1d-aa19-364ded6fb238" CreatedBy="kaloyan@kukui.com" CreatedAt="8/12/2018 7:39:31 AM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/12/2018 7:39:31 AM +00:00" CategoryIds="rabbits" TagIds="lions">
       <Title>John Doe was here</Title>
       <Content><![CDATA[YES! HE WAS!]]></Content>
@@ -369,10 +220,6 @@ __double underscores__</Content>
     <WikiEntry Id="0b8ef9c3-9594-41d1-b8b4-4c854eaf4206" CreatedBy="kaloyan@kukui.com" CreatedAt="8/12/2018 7:41:15 AM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/12/2018 7:41:15 AM +00:00" CategoryIds="rabbits" TagIds="lions">
       <Title>John Doe was here</Title>
       <Content><![CDATA[YES! HE WAS!]]></Content>
-    </WikiEntry>
-    <WikiEntry Id="640a3b20-1d67-4f77-8de8-afcdd07b84ee" CreatedBy="kaloyan@kukui.com" CreatedAt="8/12/2018 7:41:29 AM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/12/2018 7:41:29 AM +00:00" CategoryIds="aliens,frogs" TagIds="cats,dogs,lions,sheep,jackie">
-      <Title>WHO AM I?</Title>
-      <Content><![CDATA[WHO AM I?]]></Content>
     </WikiEntry>
   </WikiEntries>
 </Wiki>
