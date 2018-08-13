@@ -48,7 +48,10 @@ namespace TagsCategoriesTest.App_Code.Utils
         // Bind categories 
         public static void BindCategories(XDocument doc, ListBox categoryId)
         {
-            var node = doc.Descendants("Categories").Elements("Category").Select(p => p.Attribute("Title").Value).ToList();
+            var node = doc.Descendants("Categories")
+                .Elements("Category")
+                .Select(p => p.Attribute("Title").Value)
+                .ToList();
 
             if (node != null)
             {
@@ -60,7 +63,10 @@ namespace TagsCategoriesTest.App_Code.Utils
         // Bind tags 
         public static void BindTags(XDocument doc, ListBox tagsId)
         {
-            var node = doc.Descendants("Tags").Elements("Tag").Select(p => p.Attribute("Title").Value).ToList();
+            var node = doc.Descendants("Tags")
+                .Elements("Tag")
+                .Select(p => p.Attribute("Title").Value)
+                .ToList();
 
             if (node != null)
             {
@@ -68,5 +74,6 @@ namespace TagsCategoriesTest.App_Code.Utils
                 tagsId.DataBind();
             }
         }
+
     }
 }

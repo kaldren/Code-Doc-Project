@@ -18,11 +18,24 @@ namespace TagsCategoriesTest
             {
                 string queryParam = Request.QueryString["id"];
 
+                if (string.IsNullOrEmpty(queryParam))
+                {
+                    Response.Redirect("/");
+                }
+
                 var wiki = WikiAPI.GetWikiById("WikiEntries", queryParam);
 
-                txtTitle.Text = wiki.Element("Title").Value;
-                txtContent.Text = wiki.Element("Content").Value;
-                wikiId.Value = queryParam;
+                if (wiki != null)
+                {
+                    txtTitle.Text = wiki.Element("Title").Value;
+                    txtContent.Text = wiki.Element("Content").Value;
+                    wikiId.Value = queryParam;
+                }
+                else
+                {
+                    // Report error message
+                    Response.Redirect("/");
+                }
             }
 
         }

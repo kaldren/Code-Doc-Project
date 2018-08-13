@@ -13,11 +13,6 @@ namespace TagsCategoriesTest.App_Code.Utils
         {
             var node = doc.Descendants(element).Where(p => p.Attribute(attr).Value == attrValue).FirstOrDefault();
 
-            if (node == null)
-            {
-                return null;
-            }
-
             return node;
         }
 
@@ -25,27 +20,15 @@ namespace TagsCategoriesTest.App_Code.Utils
         // Checks if given value exists in the given xml node
         public static bool XmlElementExist(XDocument doc, string parentNode, string attrName, string attrValue)
         {
-            XElement data = null;
+            var data = doc.Descendants(parentNode)
+                .Elements()
+                .Where(p => p.Attribute(attrName).Value == attrValue)
+                .FirstOrDefault();
 
-            try
-            {
-                data =
-                    doc.Root.Elements(parentNode)
-                    .Elements()
-                    .Where(p => p.Attribute(attrName).Value == attrValue)
-                    .FirstOrDefault();
-            }
-            catch (NullReferenceException)
-            {
-                Console.WriteLine("Wrong XML naming format (Pascal Case required).");
-                return false;
-            }
-
-
-            return (data == null) ? false : true;
+            return data != null;
         }
 
-        // Gets the last node's Id (could increment it by increment)
+        // Gets the last node Id (could increment it by increment)
         public static string GenerateNodeId(XDocument doc, string xmlParent, string xmlChild, string xmlChildAttribute, string xmlAttributeValue, int increment = 1)
         {
             // Create default node if the node list is empty
@@ -123,7 +106,6 @@ namespace TagsCategoriesTest.App_Code.Utils
                             .Where(p => p.Attribute("Title").Value == title)
                             .Select(p => (string)p.Attribute("Referenced").Value).ToString();
 
-
                 int newReference = -999;
                 var newdata = Int32.TryParse(data, out newReference);
 
@@ -167,10 +149,13 @@ namespace TagsCategoriesTest.App_Code.Utils
                     .Value == wikiId)
                     .FirstOrDefault();
 
-            data.Element("Title").Value = wikiTitle;
-            data.Element("Content").Value = wikiContent;
-            data.Attribute("UpdatedAt").Value = DateTimeOffset.UtcNow.ToString();
-            XmlUtils.SaveXML(doc, WikiAPI.XmlFilePath);
+            if (data != null)
+            {
+                data.Element("Title").Value = wikiTitle;
+                data.Element("Content").Value = wikiContent;
+                data.Attribute("UpdatedAt").Value = DateTimeOffset.UtcNow.ToString();
+                XmlUtils.SaveXML(doc, WikiAPI.XmlFilePath);
+            }
         }
 
         // Delete WikiEntry
@@ -183,9 +168,12 @@ namespace TagsCategoriesTest.App_Code.Utils
                     .Value == id)
                     .FirstOrDefault();
 
-            FilterReferences(doc, delEntry);
-            delEntry.Remove();
-            doc.Save(WikiAPI.XmlFilePath);
+            if (delEntry != null)
+            {
+                FilterReferences(doc, delEntry);
+                delEntry.Remove();
+                doc.Save(WikiAPI.XmlFilePath);
+            }
         }
 
         public static void RemoveElement(XDocument doc, string parentElement, string childAttr, string childValue)
@@ -200,18 +188,21 @@ namespace TagsCategoriesTest.App_Code.Utils
                             .Where(item => item.Attribute(childAttr).Value == childValue)
                             .ToList();
 
-            foreach (var item in data)
+            if (data != null)
             {
-                item.Attribute("Referenced").Value = (Convert.ToInt32(item.Attribute("Referenced").Value) - 1).ToString();
+                foreach (var item in data)
+                {
+                    item.Attribute("Referenced").Value = (Convert.ToInt32(item.Attribute("Referenced").Value) - 1).ToString();
+                }
             }
         }
 
         private static void FilterReferences(XDocument doc, XElement element)
         {
-
             // Filter Categories
             var tempCategories = element.Attribute("CategoryIds").Value;
             var filteredCategories = tempCategories.Split(',');
+
             for (int i = 0; i < filteredCategories.Length; i++)
             {
                 var tempy = doc.Descendants("Categories")
@@ -231,21 +222,22 @@ namespace TagsCategoriesTest.App_Code.Utils
 
             // Filter Tags
             var tempTags = element.Attribute("TagIds").Value;
-            var filteredTags = tempCategories.Split(',');
-            for (int i = 0; i < filteredCategories.Length; i++)
+            var filteredTags = tempTags.Split(',');
+
+            for (int i = 0; i < filteredTags.Length; i++)
             {
                 var tempy = doc.Descendants("Tags")
                             .Elements()
-                            .Where(p => p.Attribute("Title").Value == filteredCategories[i])
+                            .Where(p => p.Attribute("Title").Value == filteredTags[i])
                             .Select(p => p.Attribute("Referenced").Value).FirstOrDefault();
 
                 if (tempy == "1")
                 {
-                    RemoveElement(WikiAPI.WikiXML, "Tag", "Title", filteredCategories[i]);
+                    RemoveElement(WikiAPI.WikiXML, "Tag", "Title", filteredTags[i]);
                 }
                 else
                 {
-                    UpdateReference(WikiAPI.WikiXML, "Tag", "Title", filteredCategories[i]);
+                    UpdateReference(WikiAPI.WikiXML, "Tag", "Title", filteredTags[i]);
                 }
             }
 

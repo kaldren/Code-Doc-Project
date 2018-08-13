@@ -88,6 +88,7 @@ namespace TagsCategoriesTest.App_Code.Wiki
             if (wiki == null)
             {
                 throw new ArgumentNullException(nameof(wiki));
+                //return;
             }
             // Lock 
             _readWriteLock.EnterWriteLock();

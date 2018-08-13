@@ -7,6 +7,7 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
+using TagsCategoriesTest.App_Code.Utils;
 using TagsCategoriesTest.App_Code.Wiki;
 
 namespace TagsCategoriesTest
@@ -27,15 +28,18 @@ namespace TagsCategoriesTest
                                      {
                                          Title = x.Attribute("Title").Value,
                                          Id = x.Attribute("Id").Value,
-                                         //Content = CommonMark.CommonMarkConverter.Convert(x.Element("Content").Value
                                      };
             rptWikiMenu.DataBind();
-
 
             string queryParam = Request.QueryString["category"];
 
             if (queryParam != null)
             {
+                if (!XmlUtils.XmlElementExist(WikiAPI.WikiXML, "Categories", "Title", queryParam))
+                {
+                    Response.Redirect("/");
+                }
+
                 var data = from x in doc.Root.Elements("WikiEntries")
                             .Elements()
                             .Where(p => p.Attribute("CategoryIds")
@@ -57,6 +61,11 @@ namespace TagsCategoriesTest
 
             if (showParam != null)
             {
+                if (!XmlUtils.XmlElementExist(WikiAPI.WikiXML, "WikiEntries", "Id", showParam))
+                {
+                    Response.Redirect("/");
+                }
+
                 var data = from x in doc.Root.Elements("WikiEntries")
                             .Elements()
                             .Where(p => p.Attribute("Id")
@@ -72,22 +81,6 @@ namespace TagsCategoriesTest
                 rptWikiEntry.DataBind();
                 phWikiEntries.Visible = false;
             }
-
-        }
-
-        [WebMethod]
-        public static object ShowWikiDate()
-        {
-            XDocument doc = XDocument.Load(HttpContext.Current.Server.MapPath("~/App_Data/Wiki.xml"));
-
-            var data = from x in doc.Root.Elements("Categories")
-                                    .Elements("Category")
-                       select new
-                       {
-                           Title = x.Attribute("Title").Value,
-                           Id = x.Attribute("Id").Value,
-                       };
-            return data;
         }
 
         [WebMethod]
