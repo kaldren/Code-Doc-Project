@@ -43,14 +43,6 @@ namespace TagsCategoriesTest.App_Code.Wiki
 
         #region Methods
 
-        private void AddWikiEntry(WikiDTO wiki)
-        {
-            // Add all new tags / categories 
-            XmlUtils.AddWikiNodes(wiki.Categories, "Categories", "Category", "Title");
-            XmlUtils.AddWikiNodes(wiki.Tags, "Tags", "Tag", "Title");
-            XmlUtils.AddWikiEntry(WikiXML, wiki);
-        }
-
         // CRUD operations
 
         // Create wiki
@@ -67,7 +59,9 @@ namespace TagsCategoriesTest.App_Code.Wiki
             try
             {
                 // Add new wiki 
-                AddWikiEntry(wiki);
+                XmlUtils.AddWikiNodes(wiki.Categories, "Categories", "Category", "Title");
+                XmlUtils.AddWikiNodes(wiki.Tags, "Tags", "Tag", "Title");
+                XmlUtils.AddWikiEntry(WikiXML, wiki);
             }
             finally
             {

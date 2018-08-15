@@ -1,18 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Wiki>
   <Categories>
-    <Category Id="1" Title="animals" Referenced="19" />
-    <Category Id="2" Title="frogs" Referenced="17" />
-    <Category Id="3" Title="newcategory" Referenced="11" />
-    <Category Id="4" Title="google" Referenced="13" />
-    <Category Id="5" Title="zlato" Referenced="1" />
+    <Category Id="1" Title="animals" Referenced="18" />
+    <Category Id="2" Title="frogs" Referenced="16" />
+    <Category Id="3" Title="newcategory" Referenced="10" />
+    <Category Id="4" Title="google" Referenced="12" />
   </Categories>
   <Tags>
-    <Tag Id="1" Title="cats" Referenced="22" />
-    <Tag Id="2" Title="dogs" Referenced="22" />
-    <Tag Id="3" Title="newtag" Referenced="16" />
-    <Tag Id="4" Title="microsoft" Referenced="14" />
-    <Tag Id="5" Title="ofca" Referenced="1" />
+    <Tag Id="1" Title="cats" Referenced="21" />
+    <Tag Id="2" Title="dogs" Referenced="21" />
+    <Tag Id="3" Title="newtag" Referenced="15" />
+    <Tag Id="4" Title="microsoft" Referenced="13" />
   </Tags>
   <WikiEntries>
     <WikiEntry Id="b44c57a0-4d5c-40b0-9587-497f6a33c679" CreatedBy="kaloyan@kukui.com" CreatedAt="8/12/2018 11:47:55 AM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/12/2018 11:47:55 AM +00:00" CategoryIds="animals,frogs,newcategory,google" TagIds="cats,dogs,newtag,microsoft">
@@ -72,10 +70,6 @@
     <WikiEntry Id="b8ee612e-ad87-4cc1-be66-695e928d0355" CreatedBy="kaloyan@kukui.com" CreatedAt="8/15/2018 7:02:31 PM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/15/2018 7:15:55 PM +00:00" CategoryIds="animals,frogs,google" TagIds="cats,dogs,newtag,microsoft">
       <Title>Auto generated ID v2</Title>
       <Content>testvam weiiii!!! OK&gt;?</Content>
-    </WikiEntry>
-    <WikiEntry Id="f09c81a8-341c-4da6-90cc-877b8373f9f5" CreatedBy="kaloyan@kukui.com" CreatedAt="8/15/2018 7:18:59 PM +00:00" UpdatedBy="kaloyan@kukui.com" UpdatedAt="8/15/2018 7:18:59 PM +00:00" CategoryIds="animals,frogs,newcategory,google,zlato" TagIds="cats,dogs,newtag,microsoft,ofca">
-      <Title>kaloqn king</Title>
-      <Content><![CDATA[test]]></Content>
     </WikiEntry>
   </WikiEntries>
 </Wiki>
