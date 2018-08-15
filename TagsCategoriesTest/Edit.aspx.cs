@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Xml.Linq;
 using TagsCategoriesTest.App_Code.Utils;
 using TagsCategoriesTest.App_Code.Wiki;
+using static TagsCategoriesTest.App_Code.Wiki.WikiAPI;
 
 namespace TagsCategoriesTest
 {
@@ -55,7 +56,8 @@ namespace TagsCategoriesTest
                     DateTimeOffset.UtcNow,
                     "JohnDoe",
                     DataUtils.GetUniqueData(lbCategories, txtCategories),
-                    DataUtils.GetUniqueData(lbTags, txtTags)
+                    DataUtils.GetUniqueData(lbTags, txtTags),
+                    WikiRequestType.Edit
                 ), wikiId.Value);
         }
 

@@ -17,6 +17,12 @@ namespace TagsCategoriesTest.App_Code.Wiki
 {
     public class WikiAPI
     {
+        public enum WikiRequestType
+        {
+            New,
+            Edit
+        };
+
         #region Fields
         private static readonly string _xmlFilePath = HttpContext.Current.Server.MapPath(@"~/App_Data/Wiki.xml");
         private static readonly XDocument _wikiXml = XDocument.Load(_xmlFilePath);
@@ -59,8 +65,8 @@ namespace TagsCategoriesTest.App_Code.Wiki
             try
             {
                 // Add new wiki 
-                XmlUtils.AddWikiNodes(wiki.Categories, "Categories", "Category", "Title");
-                XmlUtils.AddWikiNodes(wiki.Tags, "Tags", "Tag", "Title");
+                XmlUtils.AddWikiNodes(wiki.Categories, "Categories", "Category", "Title", WikiRequestType.New);
+                XmlUtils.AddWikiNodes(wiki.Tags, "Tags", "Tag", "Title", WikiRequestType.New);
                 XmlUtils.AddWikiEntry(WikiXML, wiki);
             }
             finally

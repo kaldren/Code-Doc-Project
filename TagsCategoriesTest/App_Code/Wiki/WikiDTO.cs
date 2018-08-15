@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
+using static TagsCategoriesTest.App_Code.Wiki.WikiAPI;
 
 /// <summary>
 /// Summary description for WikiDTO
@@ -21,9 +22,10 @@ namespace TagsCategoriesTest.App_Code.Wiki
         public string UpdatedBy { get; private set; }
         public HashSet<string> Categories { get; private set; }
         public HashSet<string> Tags { get; private set; }
+        public WikiRequestType WikiRequestType { get; set; }
 
         public WikiDTO(string title, string content, string createdby,
-            DateTimeOffset createdat, DateTimeOffset updatedat, string updatedby, HashSet<string> categories, HashSet<string> tags)
+            DateTimeOffset createdat, DateTimeOffset updatedat, string updatedby, HashSet<string> categories, HashSet<string> tags, WikiRequestType type)
         {
             Title = title;
             Content = content;
@@ -33,7 +35,7 @@ namespace TagsCategoriesTest.App_Code.Wiki
             UpdatedBy = updatedby;
             Categories = categories;
             Tags = tags;
+            WikiRequestType = type;
         }
-
     }
 }

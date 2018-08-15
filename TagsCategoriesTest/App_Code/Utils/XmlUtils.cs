@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
 using TagsCategoriesTest.App_Code.Wiki;
+using static TagsCategoriesTest.App_Code.Wiki.WikiAPI;
 
 namespace TagsCategoriesTest.App_Code.Utils
 {
@@ -91,7 +92,7 @@ namespace TagsCategoriesTest.App_Code.Utils
             return null;
         }
 
-        public static void AddWikiNodes(HashSet<string> data, string xmlParent, string xmlChild, string xmlChildAttribute, bool isEdit = false)
+        public static void AddWikiNodes(HashSet<string> data, string xmlParent, string xmlChild, string xmlChildAttribute, WikiRequestType wikiRequestType)
         {
             foreach (var item in data)
             {
@@ -109,7 +110,7 @@ namespace TagsCategoriesTest.App_Code.Utils
                 }
                 else
                 {
-                    if (isEdit == false)
+                    if (wikiRequestType == WikiRequestType.New)
                     {
                         var node = WikiAPI.WikiXML.Descendants(xmlParent).Elements(xmlChild).Where(p => p.Attribute("Title").Value == item).FirstOrDefault();
 
@@ -219,8 +220,8 @@ namespace TagsCategoriesTest.App_Code.Utils
 
             if (data != null)
             {
-                XmlUtils.AddWikiNodes(wiki.Categories, "Categories", "Category", "Title", true);
-                XmlUtils.AddWikiNodes(wiki.Tags, "Tags", "Tag", "Title", true);
+                XmlUtils.AddWikiNodes(wiki.Categories, "Categories", "Category", "Title", WikiRequestType.Edit);
+                XmlUtils.AddWikiNodes(wiki.Tags, "Tags", "Tag", "Title", WikiRequestType.Edit);
 
                 data.Element("Title").Value = wiki.Title;
                 data.Element("Content").Value = wiki.Content;

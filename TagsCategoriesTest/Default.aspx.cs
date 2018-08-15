@@ -33,7 +33,8 @@ namespace TagsCategoriesTest
                     DateTimeOffset.UtcNow,
                     "JohnDoe",
                     DataUtils.GetUniqueData(lbCategories, txtCategories),
-                    DataUtils.GetUniqueData(lbTags, txtTags)
+                    DataUtils.GetUniqueData(lbTags, txtTags),
+                    WikiAPI.WikiRequestType.New
                 );
 
             // Add new entry
