@@ -43,40 +43,11 @@ namespace TagsCategoriesTest.App_Code.Wiki
 
         #region Methods
 
-        private void AddWikiNodes(HashSet<string> data, string xmlParent, string xmlChild, string xmlChildAttribute)
-        {
-            foreach (var item in data)
-            {
-                // Create new Tag / Category 
-                if (!XmlUtils.XmlElementExist(WikiXML, xmlParent, xmlChildAttribute, item))
-                {
-                    WikiXML.Root
-                            .Element(xmlParent)
-                            .Add(
-                                new XElement(xmlChild,
-                                new XAttribute("Id", XmlUtils.GenerateNodeId(WikiXML, xmlParent, xmlChild, xmlChildAttribute, item)),
-                                new XAttribute(xmlChildAttribute, item),
-                                new XAttribute("Referenced", XmlUtils.UpdateReferences(WikiXML, xmlParent, xmlChild, 1)))
-                            );
-                }
-                else
-                {
-                    var node = WikiXML.Descendants(xmlParent).Elements(xmlChild).Where(p => p.Attribute("Title").Value == item).FirstOrDefault();
-
-                    if (node != null)
-                    {
-                        node.Attribute("Referenced").Value = (Convert.ToInt32(node.Attribute("Referenced").Value) + 1).ToString();
-                    }
-
-                }
-            }
-        }
-
         private void AddWikiEntry(WikiDTO wiki)
         {
             // Add all new tags / categories 
-            AddWikiNodes(wiki.Categories, "Categories", "Category", "Title");
-            AddWikiNodes(wiki.Tags, "Tags", "Tag", "Title");
+            XmlUtils.AddWikiNodes(wiki.Categories, "Categories", "Category", "Title");
+            XmlUtils.AddWikiNodes(wiki.Tags, "Tags", "Tag", "Title");
             XmlUtils.AddWikiEntry(WikiXML, wiki);
         }
 
@@ -112,9 +83,9 @@ namespace TagsCategoriesTest.App_Code.Wiki
         }
 
         // Edit wiki
-        public static void EditWiki(string wikiId, string wikiTitle, string wikiContent)
+        public static void EditWiki(WikiDTO wiki, string wikiId)
         {
-            XmlUtils.EditWikiEntry(WikiAPI.WikiXML, wikiId, wikiTitle, wikiContent);
+            XmlUtils.EditWikiEntry(wiki, wikiId);
         }
 
         // Delete wiki

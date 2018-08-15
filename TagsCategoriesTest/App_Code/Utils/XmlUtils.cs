@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI.WebControls;
 using System.Xml.Linq;
 using TagsCategoriesTest.App_Code.Wiki;
 
@@ -90,6 +91,37 @@ namespace TagsCategoriesTest.App_Code.Utils
             return null;
         }
 
+        public static void AddWikiNodes(HashSet<string> data, string xmlParent, string xmlChild, string xmlChildAttribute, bool isEdit = false)
+        {
+            foreach (var item in data)
+            {
+                // Create new Tag / Category 
+                if (!XmlUtils.XmlElementExist(WikiAPI.WikiXML, xmlParent, xmlChildAttribute, item))
+                {
+                    WikiAPI.WikiXML.Root
+                            .Element(xmlParent)
+                            .Add(
+                                new XElement(xmlChild,
+                                new XAttribute("Id", XmlUtils.GenerateNodeId(WikiAPI.WikiXML, xmlParent, xmlChild, xmlChildAttribute, item)),
+                                new XAttribute(xmlChildAttribute, item),
+                                new XAttribute("Referenced", XmlUtils.UpdateReferences(WikiAPI.WikiXML, xmlParent, xmlChild, 1)))
+                            );
+                }
+                else
+                {
+                    if (isEdit == false)
+                    {
+                        var node = WikiAPI.WikiXML.Descendants(xmlParent).Elements(xmlChild).Where(p => p.Attribute("Title").Value == item).FirstOrDefault();
+
+                        if (node != null)
+                        {
+                            node.Attribute("Referenced").Value = (Convert.ToInt32(node.Attribute("Referenced").Value) + 1).ToString();
+                        }
+                    }
+                }
+            }
+        }
+
         // Update the references
         public static string UpdateReferences(XDocument doc, string parentNode, string title, int factor)
         {
@@ -140,21 +172,62 @@ namespace TagsCategoriesTest.App_Code.Utils
         }
 
         // Edit WikiEntry
-        public static void EditWikiEntry(XDocument doc, string wikiId, string wikiTitle, string wikiContent)
+        public static void EditWikiEntry(WikiDTO wiki, string wikiId)
         {
-            var data = doc.Root
+            var data = WikiAPI.WikiXML.Root
                     .Elements("WikiEntries")
                     .Elements()
                     .Where(p => p.Attribute("Id")
                     .Value == wikiId)
                     .FirstOrDefault();
 
+            // Get previous TagId / CategoryIds
+
+            var oldTags = data.Attribute("TagIds").Value.Split(',');
+            var newTags = XmlUtils.FilterHashData(WikiAPI.WikiXML, wiki.Tags, "Tags", "Id").Split(',');
+
+            var oldCategories = data.Attribute("CategoryIds").Value.Split(',');
+            var newCategories = XmlUtils.FilterHashData(WikiAPI.WikiXML, wiki.Categories, "Categories", "Id").Split(',');
+
+            foreach (var tag in oldTags)
+            {
+                // The element no longer exists in the new input data - decrease it's reference value (or remove it completely)
+                if (Array.IndexOf(newTags, tag) <= -1)
+                {
+                    UpdateReferencev2("Tags", "Title", tag, -1);
+                }
+                else
+                {
+                    // The element exists, increase reference
+                    UpdateReferencev2("Tags", "Title", tag, 0);
+                }
+            }
+
+            foreach (var category in oldCategories)
+            {
+                // The element no longer exists in the new input data - decrease it's reference value (or remove it completely)
+                if (Array.IndexOf(newCategories, category) <= -1)
+                {
+                    UpdateReferencev2("Categories", "Title", category, -1);
+                }
+                else
+                {
+                    // The element exists, upte increase reference
+                    UpdateReferencev2("Categories", "Title", category, 0);
+                }
+            }
+
             if (data != null)
             {
-                data.Element("Title").Value = wikiTitle;
-                data.Element("Content").Value = wikiContent;
-                data.Attribute("UpdatedAt").Value = DateTimeOffset.UtcNow.ToString();
-                XmlUtils.SaveXML(doc, WikiAPI.XmlFilePath);
+                XmlUtils.AddWikiNodes(wiki.Categories, "Categories", "Category", "Title", true);
+                XmlUtils.AddWikiNodes(wiki.Tags, "Tags", "Tag", "Title", true);
+
+                data.Element("Title").Value = wiki.Title;
+                data.Element("Content").Value = wiki.Content;
+                data.Attribute("CategoryIds").Value = XmlUtils.FilterHashData(WikiAPI.WikiXML, wiki.Categories, "Categories", "Id");
+                data.Attribute("TagIds").Value = XmlUtils.FilterHashData(WikiAPI.WikiXML, wiki.Tags, "Tags", "Id");
+                data.Attribute("UpdatedAt").Value = wiki.UpdatedAt.ToString();
+                XmlUtils.SaveXML(WikiAPI.WikiXML, WikiAPI.XmlFilePath);
             }
         }
 
@@ -194,6 +267,32 @@ namespace TagsCategoriesTest.App_Code.Utils
                 {
                     item.Attribute("Referenced").Value = (Convert.ToInt32(item.Attribute("Referenced").Value) - 1).ToString();
                 }
+            }
+        }
+
+        public static void UpdateReferencev2(string parentElement, string title, string value, int factor)
+        {
+            var data = WikiAPI.WikiXML.Root
+                    .Elements(parentElement)
+                    .Elements()
+                    .Where(item => item.Attribute(title).Value == value)
+                    .FirstOrDefault();
+
+            if (data.Attribute("Referenced").Value == "1")
+            {
+                if (factor < 1)
+                {
+                    // Remove the attribute since it is no longer referenced
+                    data.Remove();
+                }
+                else
+                {
+                    data.Attribute("Referenced").Value = (Convert.ToInt32(data.Attribute("Referenced").Value) + factor).ToString();
+                }
+            }
+            else
+            {
+                data.Attribute("Referenced").Value = (Convert.ToInt32(data.Attribute("Referenced").Value) + factor).ToString();
             }
         }
 

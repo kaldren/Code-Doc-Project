@@ -58,6 +58,42 @@ namespace TagsCategoriesTest {
         protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
+        /// lbTags control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox lbTags;
+        
+        /// <summary>
+        /// txtTags control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTags;
+        
+        /// <summary>
+        /// lbCategories control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox lbCategories;
+        
+        /// <summary>
+        /// txtCategories control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCategories;
+        
+        /// <summary>
         /// btnPreview control.
         /// </summary>
         /// <remarks>

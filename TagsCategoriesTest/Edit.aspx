@@ -21,6 +21,20 @@
             <div>
                 <asp:Button ID="btnSave" Text="Save" runat="server" OnClick="btnSave_Click" />
             </div>
+            <div class="col-xs-12 col-md-6">
+                <p>Tags:</p>
+                <asp:ListBox ID="lbTags" runat="server" SelectionMode="Multiple"></asp:ListBox>
+                <div>
+                    <asp:TextBox ID="txtTags" runat="server" />
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <p>Categories:</p>
+                <asp:ListBox ID="lbCategories" runat="server" SelectionMode="Multiple"></asp:ListBox>
+                <div>
+                    <asp:TextBox ID="txtCategories" runat="server" />
+                </div>
+            </div>
         </div>
 
         <div>

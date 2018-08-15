@@ -16,6 +16,10 @@ namespace TagsCategoriesTest
         {
             if (!IsPostBack)
             {
+                DataUtils.BindCategories(WikiAPI.WikiXML, lbCategories);
+                DataUtils.BindCategories(WikiAPI.WikiXML, lbTags);
+
+
                 string queryParam = Request.QueryString["id"];
 
                 if (string.IsNullOrEmpty(queryParam))
@@ -29,6 +33,8 @@ namespace TagsCategoriesTest
                 {
                     txtTitle.Text = wiki.Element("Title").Value;
                     txtContent.Text = wiki.Element("Content").Value;
+                    txtCategories.Text = wiki.Attribute("CategoryIds").Value;
+                    txtTags.Text = wiki.Attribute("TagIds").Value;
                     wikiId.Value = queryParam;
                 }
                 else
@@ -42,7 +48,15 @@ namespace TagsCategoriesTest
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            WikiAPI.EditWiki(wikiId.Value, txtTitle.Text, txtContent.Text);
+            WikiAPI.EditWiki(new WikiDTO(
+                    txtTitle.Text,
+                    txtContent.Text, "JohnDoe",
+                    DateTimeOffset.UtcNow,
+                    DateTimeOffset.UtcNow,
+                    "JohnDoe",
+                    DataUtils.GetUniqueData(lbCategories, txtCategories),
+                    DataUtils.GetUniqueData(lbTags, txtTags)
+                ), wikiId.Value);
         }
 
         protected void btnPreview_Click(object sender, EventArgs e)
